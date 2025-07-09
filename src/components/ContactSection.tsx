@@ -57,7 +57,7 @@ const ContactSection: React.FC = () => (
           <span>@rattatwingo</span>
         </a>
         <p className="contact-note">
-          Feel free to reach out! I'm most active on Discord and Instagram.
+          Feel free to reach out! I&apos;m most active on Discord and Instagram.
         </p>
       </div>
     </div>
