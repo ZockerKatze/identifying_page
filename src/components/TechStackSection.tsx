@@ -22,27 +22,27 @@ const TechStackSection: React.FC = () => (
               The only thing you need to read anyways is the Styling, you can skip the links!
             */
             }
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#3776AB', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg" alt="Python" className="tech-icon" />
             Python
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/lua.svg" alt="Lua" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#2C2D72', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/lua.svg" alt="Lua" className="tech-icon" />
             Lua
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/rust.svg" alt="Rust" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#DEA584', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/rust.svg" alt="Rust" className="tech-icon" />
             Rust
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openjdk.svg" alt="Java" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#007396', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openjdk.svg" alt="Java" className="tech-icon" />
             Java
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gnubash.svg" alt="Bash" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#4EAA25', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gnubash.svg" alt="Bash" className="tech-icon" />
             Bash
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/typescript.svg" alt="TypeScript" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#3178C6', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/typescript.svg" alt="TypeScript" className="tech-icon" />
             TypeScript
           </div>
         </div>
@@ -52,35 +52,35 @@ const TechStackSection: React.FC = () => (
         {/* We just use a CDN here since local Storage would be efficient, but overkill for this situation */}
         <div className="tech-grid">
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#F05032', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" className="tech-icon" />
             Git
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg" alt="Docker" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#2496ED', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg" alt="Docker" className="tech-icon" />
             Docker
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ffmpeg.svg" alt="FFmpeg" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#007808', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ffmpeg.svg" alt="FFmpeg" className="tech-icon" />
             FFmpeg
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visualstudiocode.svg" alt="Visual Studio Code" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#007ACC', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visualstudiocode.svg" alt="Visual Studio Code" className="tech-icon" />
             Visual Studio Code
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/neovim.svg" alt="NeoVim" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#57A143', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/neovim.svg" alt="NeoVim" className="tech-icon" />
             NeoVim
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/portainer.svg" alt="Portainer" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#13BEF9', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/portainer.svg" alt="Portainer" className="tech-icon" />
             Portainer
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachemaven.svg" alt="Maven/Gradle" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#C71A36', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachemaven.svg" alt="Maven/Gradle" className="tech-icon" />
             Maven/Gradle
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cmake.svg" alt="CMake" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#064F8C', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cmake.svg" alt="CMake" className="tech-icon" />
             CMake
           </div>
         </div>
@@ -89,19 +89,19 @@ const TechStackSection: React.FC = () => (
         <h3 className="subsection-title">Operating Systems</h3>
         <div className="tech-grid">
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/archlinux.svg" alt="Arch Linux" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#1793D1', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/archlinux.svg" alt="Arch Linux" className="tech-icon" />
             Arch Linux
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/alpinelinux.svg" alt="Alpine Linux" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#0D597F', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/alpinelinux.svg" alt="Alpine Linux" className="tech-icon" />
             Alpine Linux
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/debian.svg" alt="Debian" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#A81D33', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/debian.svg" alt="Debian" className="tech-icon" />
             Debian
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg" alt="RHEL (Red-Hat)" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#EE0000', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redhat.svg" alt="RHEL (Red-Hat)" className="tech-icon" />
             RHEL (Red-Hat)
           </div>
         </div>
@@ -111,23 +111,23 @@ const TechStackSection: React.FC = () => (
         {/* We just use a CDN here since local Storage would be efficient, but overkill for this situation */}
         <div className="tech-grid">
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gradle.svg" alt="Gradle" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#02303A', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gradle.svg" alt="Gradle" className="tech-icon" />
             Gradle
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachemaven.svg" alt="Maven" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#C71A36', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachemaven.svg" alt="Maven" className="tech-icon" />
             Maven
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openjdk.svg" alt="Java Swing" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#007396', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openjdk.svg" alt="Java Swing" className="tech-icon" />
             Java Swing
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nginx.svg" alt="Nginx" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#009639', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nginx.svg" alt="Nginx" className="tech-icon" />
             Nginx
           </div>
           <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/githubactions.svg" alt="CI/CD" style={{height: '1em', verticalAlign: 'middle', marginRight: '0.5em', color: '#2088FF', background: '#fff', borderRadius: '3px', padding: '2px'}} />
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/githubactions.svg" alt="CI/CD" className="tech-icon" />
             CI/CD
           </div>
         </div>

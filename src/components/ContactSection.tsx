@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { TypeAnimation } from 'react-type-animation';
 
 const ContactSection: React.FC = () => (
   <section>
@@ -11,14 +14,50 @@ const ContactSection: React.FC = () => (
     </h2>
     <div className="section-content">
       <div className="contact-list">
-        <a className="contact-item">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-          </svg>
+        <a href="mailto:seppmutterman@gmail.com" className="contact-item">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email" className="contact-icon" />
+          <span>seppmutterman@gmail.com</span>
+        </a>
+        <a href="https://instagram.com/rattatwinko" target="_blank" rel="noopener noreferrer" className="contact-item">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" className="contact-icon" />
           <span>@rattatwinko</span>
+          <TypeAnimation
+          sequence={[
+            ' // ',
+            2000,
+            ' // Check out some of Recent Projects!',
+            1000
+          ]}
+          wrapper='span'
+          speed={50}
+          style={{ fontSize: '0.8em', color: 'var(--text-secondary)', marginLeft: '0.5rem' }}
+          repeat={Infinity}
+          />
+        </a>
+        <a target="_blank" rel="noopener noreferrer" className="contact-item">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" alt="Discord" className="contact-icon" />
+          <span>
+            @rattatwingo
+            <TypeAnimation
+              sequence={[
+                ' // ',
+                2000,
+                ' // Add Me :3',
+                1000
+              ]}
+              wrapper="span"
+              speed={50}
+              style={{ fontSize: '0.8em', color: 'var(--text-secondary)', marginLeft: '0.5rem' }}
+              repeat={Infinity}
+            />
+          </span>
+        </a>
+        <a href="https://tiktok.com/@rattatwingo" target="_blank" rel="noopener noreferrer" className="contact-item">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg" alt="TikTok" className="contact-icon" />
+          <span>@rattatwingo</span>
         </a>
         <p className="contact-note">
-          {/* Add annotation here :3 */}
+          Feel free to reach out! I'm most active on Discord and Instagram.
         </p>
       </div>
     </div>

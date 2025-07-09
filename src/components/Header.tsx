@@ -17,7 +17,19 @@ const Header: React.FC = () => (
       style={{ fontSize: '2em', display: 'inline-block' }}
       repeat={Infinity}
     />
-    <p className="header-subtitle">Developer</p>
+    <br />
+    <TypeAnimation
+      sequence={[
+        'Developer',
+        5000,
+        'Server-Admin',
+        5000
+      ]}
+      wrapper='p'
+      speed={10}
+      style={{ fontSize: 'em', display: 'inline-block' }}
+      repeat={Infinity}
+    />
   </header>
 );
 

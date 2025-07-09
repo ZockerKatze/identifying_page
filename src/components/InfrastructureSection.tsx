@@ -13,16 +13,25 @@ const InfrastructureSection: React.FC = () => (
     </h2>
     <div className="section-content">
       <div className="subsection">
-        <h3 className="subsection-title">HomeLab Nodes:</h3>
-        <ul>
-          <li>Intel Core I7-4770k</li>
-          <li>9TB HDD && SSD (7TB HDD / 2TB SSD)</li>
-        </ul>
+        <h3 className="subsection-title">Hardware Specs</h3>
+        <div className="specs-grid">
+          <div className="spec-item">
+            <span className="spec-label">CPU:</span>
+            <span className="spec-value">Intel Core i7-4770k</span>
+          </div>
+          <div className="spec-item">
+            <span className="spec-label">Storage:</span>
+            <span className="spec-value">9TB Total (7TB HDD + 2TB SSD)</span>
+          </div>
+        </div>
       </div>
       <div className="subsection">
         <h3 className="subsection-title">Services</h3>
         <div className="tech-grid">
-          <div className="tech-item">API</div>
+          <div className="tech-item">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg" alt="API" className="tech-icon" />
+            REST API
+          </div>
         </div>
       </div>
     </div>
