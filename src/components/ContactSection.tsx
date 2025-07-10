@@ -34,8 +34,8 @@ const ContactSection: React.FC = () => (
           repeat={Infinity}
           />
         </a>
-        <a target="_blank" rel="noopener noreferrer" className="contact-item cursor-pointer">
-          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" alt="Discord" className="contact-icon" />
+        <a target="_blank" rel="noopener noreferrer" className="contact-item cursor-not-allowed">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" alt="Discord" className="contact-icon " />
           <span>
             @rattatwingo
             <TypeAnimation
