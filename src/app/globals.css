@@ -37,6 +37,63 @@
   box-sizing: border-box;
 }
 
+/* 
+  Cursor Mappings
+  @disclaimer => this is quite large, and a pain to read. I suggest you skip this and look @cursors/macOS || @cursors/cat
+*/
+:root {
+  /* Default cursor for most elements */
+  --cursor-default: url('../../public/cursors/cat/pointer.png'), auto;
+  --cursor-pointer: url('../../public/cursors/cat/cursor.png'), pointer; 
+  --cursor-text: url('../../public/cursors/macOS/textcursor.svg'), text;
+  --cursor-move: url('../../public/cursors/macOS/move.svg'), move;
+  --cursor-not-allowed: url('../../public/cursors/macOS/notallowed.svg'), not-allowed;
+  --cursor-crosshair: url('../../public/cursors/macOS/cross.svg'), crosshair;
+  --cursor-help: url('../../public/cursors/macOS/help.svg'), help;
+  --cursor-zoom-in: url('../../public/cursors/macOS/zoomin.svg'), zoom-in;
+  --cursor-zoom-out: url('../../public/cursors/macOS/zoomout.svg'), zoom-out;
+  --cursor-ew-resize: url('../../public/cursors/macOS/resizeleftright.svg'), ew-resize;
+  --cursor-ns-resize: url('../../public/cursors/macOS/resizeupdown.svg'), ns-resize;
+  --cursor-nesw-resize: url('../../public/cursors/macOS/resizenortheastsouthwest.svg'), nesw-resize;
+  --cursor-nwse-resize: url('../../public/cursors/macOS/resizenorthwestsoutheast.svg'), nwse-resize;
+  --cursor-col-resize: url('../../public/cursors/macOS/resizeleftright.svg'), col-resize;
+  --cursor-row-resize: url('../../public/cursors/macOS/resizeupdown.svg'), row-resize;
+  --cursor-grab: url('../../public/cursors/macOS/handopen.svg'), grab;
+  --cursor-grabbing: url('../../public/cursors/macOS/handgrabbing.svg'), grabbing;
+  --cursor-copy: url('../../public/cursors/macOS/copy.svg'), copy;
+  --cursor-alias: url('../../public/cursors/macOS/makealias.svg'), alias;
+  --cursor-cell: url('../../public/cursors/macOS/cell.svg'), cell;
+  --cursor-context-menu: url('../../public/cursors/macOS/contextualmenu.svg'), context-menu;
+  --cursor-progress: url('../../public/cursors/macOS/busy.svg'), progress;
+  --cursor-wait: url('../../public/cursors/macOS/beachball.svg'), wait;
+  --cursor-no-drop: url('../../public/cursors/macOS/notallowed.svg'), no-drop;
+}
+
+body {
+  --cursor-text: url('../../public/cursors/macOS/textcursor.svg'), text;
+  --cursor-move: url('../../public/cursors/macOS/move.svg'), move;
+  --cursor-not-allowed: url('../../public/cursors/macOS/notallowed.svg'), not-allowed;
+  --cursor-crosshair: url('../../public/cursors/macOS/cross.svg'), crosshair;
+  --cursor-help: url('../../public/cursors/macOS/help.svg'), help;
+  --cursor-zoom-in: url('../../public/cursors/macOS/zoomin.svg'), zoom-in;
+  --cursor-zoom-out: url('../../public/cursors/macOS/zoomout.svg'), zoom-out;
+  --cursor-ew-resize: url('../../public/cursors/macOS/resizeleftright.svg'), ew-resize;
+  --cursor-ns-resize: url('../../public/cursors/macOS/resizeupdown.svg'), ns-resize;
+  --cursor-nesw-resize: url('../../public/cursors/macOS/resizenortheastsouthwest.svg'), nesw-resize;
+  --cursor-nwse-resize: url('../../public/cursors/macOS/resizenorthwestsoutheast.svg'), nwse-resize;
+  --cursor-col-resize: url('../../public/cursors/macOS/resizeleftright.svg'), col-resize;
+  --cursor-row-resize: url('../../public/cursors/macOS/resizeupdown.svg'), row-resize;
+  --cursor-grab: url('../../public/cursors/macOS/handopen.svg'), grab;
+  --cursor-grabbing: url('../../public/cursors/macOS/handgrabbing.svg'), grabbing;
+  --cursor-copy: url('../../public/cursors/macOS/copy.svg'), copy;
+  --cursor-alias: url('../../public/cursors/macOS/makealias.svg'), alias;
+  --cursor-cell: url('../../public/cursors/macOS/cell.svg'), cell;
+  --cursor-context-menu: url('../../public/cursors/macOS/contextualmenu.svg'), context-menu;
+  --cursor-progress: url('../../public/cursors/macOS/busy.svg'), progress;
+  --cursor-wait: url('../../public/cursors/macOS/beachball.svg'), wait;
+  --cursor-no-drop: url('../../public/cursors/macOS/notallowed.svg'), no-drop;
+}
+
 body {
   font-family: 'JetBrains Mono', monospace;
   background-color: var(--bg-color);
@@ -46,12 +103,65 @@ body {
   line-height: 1.7;
   font-weight: 300;
   font-size: 14px;
+  cursor: var(--cursor-default);
 }
+
+.cursor-auto { cursor: auto; }
+.cursor-default { cursor: var(--cursor-default); }
+.cursor-pointer { cursor: var(--cursor-pointer); }
+.cursor-text { cursor: var(--cursor-text); }
+.cursor-move { cursor: var(--cursor-move); }
+.cursor-not-allowed { cursor: var(--cursor-not-allowed); }
+.cursor-crosshair { cursor: var(--cursor-crosshair); }
+.cursor-help { cursor: var(--cursor-help); }
+.cursor-zoom-in { cursor: var(--cursor-zoom-in); }
+.cursor-zoom-out { cursor: var(--cursor-zoom-out); }
+.cursor-ew-resize { cursor: var(--cursor-ew-resize); }
+.cursor-ns-resize { cursor: var(--cursor-ns-resize); }
+.cursor-nesw-resize { cursor: var(--cursor-nesw-resize); }
+.cursor-nwse-resize { cursor: var(--cursor-nwse-resize); }
+.cursor-col-resize { cursor: var(--cursor-col-resize); }
+.cursor-row-resize { cursor: var(--cursor-row-resize); }
+.cursor-grab { cursor: var(--cursor-grab); }
+.cursor-grabbing { cursor: var(--cursor-grabbing); }
+.cursor-copy { cursor: var(--cursor-copy); }
+.cursor-alias { cursor: var(--cursor-alias); }
+.cursor-cell { cursor: var(--cursor-cell); }
+.cursor-context-menu { cursor: var(--cursor-context-menu); }
+.cursor-progress { cursor: var(--cursor-progress); }
+.cursor-wait { cursor: var(--cursor-wait); }
+.cursor-no-drop { cursor: var(--cursor-no-drop); }
+
+/* Global values */
+.cursor-inherit { cursor: inherit; }
+.cursor-initial { cursor: initial; }
+.cursor-revert { cursor: revert; }
+.cursor-revert-layer { cursor: revert-layer; }
+.cursor-unset { cursor: unset; }
 
 .container {
   max-width: 48rem;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+input,
+textarea {
+  cursor: var(--cursor-text);
+}
+
+[disabled],
+.disabled {
+  cursor: var(--cursor-not-allowed);
+}
+
+.move-cursor {
+  cursor: var(--cursor-move);
+}
+
+.ew-resize,
+.resize-x {
+  cursor: var(--cursor-ew-resize);
 }
 
 /* Header styles */
@@ -153,7 +263,7 @@ section:hover {
   font-size: 0.85rem;
   font-weight: 500;
   transition: all 0.3s ease;
-  cursor: pointer;
+  cursor: var(--cursor-pointer);
   display: flex;
   align-items: center;
 }

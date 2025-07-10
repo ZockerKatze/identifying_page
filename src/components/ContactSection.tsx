@@ -14,11 +14,11 @@ const ContactSection: React.FC = () => (
     </h2>
     <div className="section-content">
       <div className="contact-list">
-        <a href="mailto:seppmutterman@gmail.com" className="contact-item">
+        <a href="mailto:seppmutterman@gmail.com" className="contact-item cursor-pointer">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" alt="Email" className="contact-icon" />
           <span>seppmutterman@gmail.com</span>
         </a>
-        <a href="https://instagram.com/rattatwinko" target="_blank" rel="noopener noreferrer" className="contact-item">
+        <a href="https://instagram.com/rattatwinko" target="_blank" rel="noopener noreferrer" className="contact-item cursor-pointer">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" alt="Instagram" className="contact-icon" />
           <span>@rattatwinko</span>
           <TypeAnimation
@@ -34,7 +34,7 @@ const ContactSection: React.FC = () => (
           repeat={Infinity}
           />
         </a>
-        <a target="_blank" rel="noopener noreferrer" className="contact-item">
+        <a target="_blank" rel="noopener noreferrer" className="contact-item cursor-pointer">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" alt="Discord" className="contact-icon" />
           <span>
             @rattatwingo
@@ -52,15 +52,15 @@ const ContactSection: React.FC = () => (
             />
           </span>
         </a>
-        <a href="https://tiktok.com/@rattatwingo" target="_blank" rel="noopener noreferrer" className="contact-item">
+        <a href="https://tiktok.com/@rattatwingo" target="_blank" rel="noopener noreferrer" className="contact-item cursor-pointer">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg" alt="TikTok" className="contact-icon" />
           <span>@rattatwingo</span>
         </a>
-        <a href="https://github.com/ZockerKatze" target="_blank" rel="noopener noreferrer" className="contact-item">
+        <a href="https://github.com/ZockerKatze" target="_blank" rel="noopener noreferrer" className="contact-item cursor-pointer">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" className="contact-icon" />
           <span>@rattatwinko</span>
         </a>
-        <p className="contact-note">
+        <p className="contact-note cursor-text">
           Feel free to reach out! I&apos;m most active on Discord and Instagram.<br/>
           <strong>Disclaimer:</strong> I do not develop on GitHub. I use Gitea for version control. That&apos;s why my GitHub is empty.
         </p>

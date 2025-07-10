@@ -17,7 +17,7 @@ const ProjectsSection: React.FC = () => (
                         You need to wrap this into a div tho.
         @used_components => './ProjectCard.tsx'
     */}
-    <div className="section-content">
+    <div className="section-content cursor-help">
       <ProjectCard
         title="Markdownblog"
         description="A markdown-based blog platform."
@@ -25,7 +25,7 @@ const ProjectsSection: React.FC = () => (
         recentFocus={["Finishing touches within MarkdownBlogs Rust-Parser and Frontend"]}
       />
     </div>
-    <div className="section-content">
+    <div className="section-content cursor-help">
       <ProjectCard
         title="This Website"
         description="It's just this Website. You don't need to know more"
@@ -34,7 +34,7 @@ const ProjectsSection: React.FC = () => (
       />
     </div>
     
-    <div className='section-content'>
+    <div className='section-content cursor-help'>
       <ProjectCard
       title='Some Rust Learning Projects'
       description='Some learning for the great Rust Programming Language'
