@@ -476,3 +476,113 @@ footer {
       opacity: 0;
   }
 }
+
+/* Modal styles for external link confirmation */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: var(--card-color);
+  color: var(--text-primary);
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  border: 1px solid var(--border-color);
+  min-width: 320px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.modal-content h3 {
+  color: var(--accent);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.modal-content p {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.modal-confirm, .modal-cancel {
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--card-color);
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.modal-confirm {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.modal-confirm:hover {
+  background: var(--accent);
+  color: var(--bg-color);
+}
+
+.modal-cancel:hover {
+  background: #222;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 0.25rem;
+    max-width: 100vw;
+  }
+  section {
+    padding: 0.75rem 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .section-content {
+    padding-left: 0.5rem;
+    border-left-width: 1px;
+  }
+  .section-title {
+    font-size: 0.95rem;
+    padding-bottom: 0.5rem;
+  }
+  .contact-item {
+    font-size: 0.95rem;
+    padding: 0.75rem 0.5rem;
+  }
+  .contact-icon {
+    margin-right: 0.5rem;
+    height: 1.2em;
+  }
+  .contact-note {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+  .footer-badge {
+    height: 24px;
+    padding: 1px 3px;
+    margin-top: 0.5rem;
+  }
+}

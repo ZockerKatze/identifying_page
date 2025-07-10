@@ -56,8 +56,13 @@ const ContactSection: React.FC = () => (
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg" alt="TikTok" className="contact-icon" />
           <span>@rattatwingo</span>
         </a>
+        <a href="https://github.com/ZockerKatze" target="_blank" rel="noopener noreferrer" className="contact-item">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="GitHub" className="contact-icon" />
+          <span>@rattatwinko</span>
+        </a>
         <p className="contact-note">
-          Feel free to reach out! I&apos;m most active on Discord and Instagram.
+          Feel free to reach out! I&apos;m most active on Discord and Instagram.<br/>
+          <strong>Disclaimer:</strong> I do not develop on GitHub. I use Gitea for version control. That&apos;s why my GitHub is empty.
         </p>
       </div>
     </div>

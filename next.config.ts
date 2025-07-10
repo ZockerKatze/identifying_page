@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+/*
+This is from a Template. I did not write this Code.
+*/
+
 const nextConfig: NextConfig = {
   // Enable static export for deployment
   output: "export",

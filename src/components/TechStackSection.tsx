@@ -49,7 +49,6 @@ const TechStackSection: React.FC = () => (
       </div>
       <div className="subsection">
         <h3 className="subsection-title">Software</h3>
-        {/* We just use a CDN here since local Storage would be efficient, but overkill for this situation */}
         <div className="tech-grid">
           <div className="tech-item">
             <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/git.svg" alt="Git" className="tech-icon" />
