@@ -20,17 +20,14 @@ const CatScratchOverlay: React.FC = () => {
   const lastPos = useRef<{x: number, y: number} | null>(null);
 
   useEffect(() => {
-    let isHolding = false;
     let startX = 0, startY = 0;
 
     const handleDown = (e: MouseEvent) => {
       if (e.button !== 0) return;
-      isHolding = false;
       startX = e.clientX;
       startY = e.clientY;
       holdTimeout.current = setTimeout(() => {
         drawing.current = true;
-        isHolding = true;
         lastPos.current = { x: startX, y: startY };
         addMark(startX, startY);
       }, HOLD_THRESHOLD);
