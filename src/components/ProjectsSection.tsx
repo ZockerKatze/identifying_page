@@ -1,4 +1,5 @@
 import React from 'react';
+import ProjectCard from './ProjectCard';
 
 const ProjectsSection: React.FC = () => (
   <section>
@@ -11,26 +12,37 @@ const ProjectsSection: React.FC = () => (
       </svg>
       ./projects.md
     </h2>
+
+    {/* @description => We use the custom Component here as its so much simpler to use than writing HTML here (shit anyways)
+                        You need to wrap this into a div tho.
+        @used_components => './ProjectCard.tsx'
+    */}
     <div className="section-content">
-      <div className="project">
-        <div className="project-header">
-          <h3 className="project-title">Markdownblog</h3>
-          <a href="https://google.com/" className="project-link">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-          </a>
-        </div>
-        <p className="project-description"></p>
-      </div>
-      <div className="subsection">
-        <h3 className="subsection-title">Recent Focus</h3>
-        <ul>
-          <li>Finishing touches within MarkdownBlogs Rust-Parser and Frontend</li>
-        </ul>
-      </div>
+      <ProjectCard
+        title="Markdownblog"
+        description="A markdown-based blog platform."
+        link="https://google.com/"
+        recentFocus={["Finishing touches within MarkdownBlogs Rust-Parser and Frontend"]}
+      />
+    </div>
+    <div className="section-content">
+      <ProjectCard
+        title="This Website"
+        description="It's just this Website. You don't need to know more"
+        link="https://zockerkatze.github.io/identifying_page/" /* We use the Link to the Current Site here. */
+        recentFocus={["Finishing touches"]}
+      />
+    </div>
+    
+    <div className='section-content'>
+      <ProjectCard
+      title='Some Rust Learning Projects'
+      description='Some learning for the great Rust Programming Language'
+      link='https://rust-lang.org/'
+      recentFocus={[
+        'Learning Async'
+      ]}
+      />
     </div>
   </section>
 );
