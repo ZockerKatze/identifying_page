@@ -1,4 +1,7 @@
+'use client'
 import React from 'react';
+import InfrastructureServices from './InfrastructureServices';
+
 
 const InfrastructureSection: React.FC = () => (
   <section>
@@ -27,12 +30,7 @@ const InfrastructureSection: React.FC = () => (
       </div>
       <div className="subsection">
         <h3 className="subsection-title">Services</h3>
-        <div className="tech-grid">
-          <div className="tech-item">
-            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg" alt="API" className="tech-icon" />
-            REST API
-          </div>
-        </div>
+        <InfrastructureServices />
       </div>
     </div>
   </section>

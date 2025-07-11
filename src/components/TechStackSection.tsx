@@ -56,16 +56,18 @@ const TechStackSection: React.FC = () => (
       {(data: TechConfig | null) =>
         data ? (
           <div className="section-content">
-            {Object.entries(data).map(([category, items]) => (
-              <div className="subsection" key={category}>
-                <h3 className="subsection-title">{category}</h3>
-                <div className="tech-grid">
-                  {items.map(item => (
-                    <TechItem key={item.name} name={item.name} url={item.url} icon={item.icon} />
-                  ))}
+            {Object.entries(data)
+              .filter(([category]) => category !== 'ContactIcons' && category !== 'InfrastructureServices')
+              .map(([category, items]) => (
+                <div className="subsection" key={category}>
+                  <h3 className="subsection-title">{category}</h3>
+                  <div className="tech-grid">
+                    {items.map(item => (
+                      <TechItem key={item.name} name={item.name} url={item.url} icon={item.icon} />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
             <p className="domain-note">Last Update - 2025@Q3</p>
           </div>
         ) : (

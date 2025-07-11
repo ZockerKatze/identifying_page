@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 
 interface UniversalDataProviderProps {
@@ -14,7 +15,10 @@ const UniversalDataProvider: React.FC<UniversalDataProviderProps> = ({ configPat
     fetch(`${basePath}${configPath}`)
       .then(res => res.json())
       .then(setData)
-      .catch(() => setData(null));
+      .catch((err) => {
+        console.error("Failed to fetch or parse config:", err);
+        setData(null);
+      });
   }, [configPath]);
 
   return <>{children(data)}</>;
