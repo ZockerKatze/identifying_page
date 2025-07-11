@@ -600,3 +600,177 @@ footer {
       opacity: 0;
   }
 }
+
+/* Responsive improvements */
+
+/* 1. Container and body adjustments for mobile */
+body {
+  padding: 1.5rem 0.5rem;
+  font-size: clamp(13px, 3vw, 16px);
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 100vw;
+  padding: 0 0.5rem;
+}
+
+header, section, .project, .contact-item {
+  padding: 1rem 0.5rem;
+}
+
+/* 2. Responsive grid and flex layouts */
+.tech-grid {
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.specs-grid {
+  gap: 0.5rem;
+}
+
+.experience-list {
+  gap: 0.5rem;
+}
+
+/* 3. Responsive font sizes */
+.header-title h1 {
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+}
+
+.header-subtitle {
+  font-size: clamp(1rem, 3vw, 1.1rem);
+}
+
+.section-title {
+  font-size: clamp(0.95rem, 3vw, 1rem);
+}
+
+.project-title {
+  font-size: clamp(1rem, 3vw, 1.1rem);
+}
+
+.project-description {
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+}
+
+.contact-item {
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  padding: 0.75rem 1rem;
+}
+
+.contact-note {
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+}
+
+.footer {
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+}
+
+/* 4. Touch-friendly hit areas */
+button, .tech-item, .contact-item, .project-link {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 5. Prevent horizontal overflow */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* 6. Media queries for breakpoints */
+@media (min-width: 480px) {
+  .container {
+    max-width: 90vw;
+    padding: 0 1rem;
+  }
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 48rem;
+    padding: 0 1rem;
+  }
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  header, section, .project, .contact-item {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .container {
+    max-width: 60rem;
+  }
+  .tech-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .contact-item {
+    font-size: 1rem;
+  }
+  .project-title {
+    font-size: 1rem;
+  }
+  .project-description {
+    font-size: 0.85rem;
+  }
+  .header-title h1 {
+    font-size: 2.5rem;
+  }
+  .header-subtitle {
+    font-size: 1.1rem;
+  }
+  .section-title {
+    font-size: 1rem;
+  }
+  .contact-note {
+    font-size: 0.8rem;
+  }
+  .footer {
+    font-size: 0.75rem;
+  }
+}
+
+/* 7. Responsive section spacing */
+section {
+  margin-bottom: 2rem;
+  padding: 1rem 0.5rem;
+}
+@media (min-width: 640px) {
+  section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+  }
+}
+
+/* 8. Responsive project and experience cards */
+.project, .experience-item {
+  padding: 1rem 0.5rem;
+}
+@media (min-width: 640px) {
+  .project, .experience-item {
+    padding: 1.5rem;
+  }
+}
+
+/* 9. Responsive footer */
+footer {
+  padding-top: 1rem;
+}
+@media (min-width: 640px) {
+  footer {
+    padding-top: 1.5rem;
+  }
+}
+
+/* Fix email clipping in .contact-item */
+.contact-item {
+  flex-wrap: wrap;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}

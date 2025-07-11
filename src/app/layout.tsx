@@ -16,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body>
         <div id="modal-root"></div>
         {SCRATCH_ENABLED && <ClientOverlayWrapper />}

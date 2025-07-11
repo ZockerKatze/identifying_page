@@ -32,5 +32,13 @@
     { "name": "Java Swing", "url": "https://openjdk.org", "icon": "openjdk" },
     { "name": "Nginx", "url": "https://nginx.org" },
     { "name": "CI/CD", "url": "https://github.com/features/actions", "icon": "githubactions" }
+  ],
+
+  "ContactIcons": [
+    { "name": "Gmail", "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gmail.svg" },
+    { "name": "Instagram", "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" },
+    { "name": "Discord", "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/discord.svg" },
+    { "name": "TikTok", "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg" },
+    { "name": "GitHub", "iconUrl": "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" }
   ]
 }
