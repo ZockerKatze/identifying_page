@@ -1,9 +1,5 @@
 import React from 'react';
 
-{/*
-    @desc
-    */}
-
 interface ProjectCardProps {
     title: string;
     description: string;

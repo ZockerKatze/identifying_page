@@ -1,0 +1,36 @@
+{
+  "Languages": [
+    { "name": "Python", "url": "https://www.python.org" },
+    { "name": "Lua", "url": "https://www.lua.org" },
+    { "name": "Rust", "url": "https://www.rust-lang.org" },
+    { "name": "Java", "url": "https://openjdk.org", "icon": "openjdk" },
+    { "name": "Bash", "url": "https://www.gnu.org/software/bash/", "icon": "gnubash" },
+    { "name": "TypeScript", "url": "https://www.typescriptlang.org", "icon": "typescript" }
+  ],
+  
+  "Software": [
+    { "name": "Git", "url": "https://git-scm.com" },
+    { "name": "Docker", "url": "https://www.docker.com" },
+    { "name": "FFmpeg", "url": "https://ffmpeg.org" },
+    { "name": "Visual Studio Code", "url": "https://code.visualstudio.com", "icon": "visualstudiocode" },
+    { "name": "NeoVim", "url": "https://neovim.io", "icon": "neovim" },
+    { "name": "Portainer", "url": "https://www.portainer.io", "icon": "portainer" },
+    { "name": "Maven/Gradle", "url": "https://maven.apache.org", "icon": "apachemaven" },
+    { "name": "CMake", "url": "https://cmake.org" }
+  ],
+
+  "Operating Systems": [
+    { "name": "Arch Linux", "url": "https://archlinux.org", "icon": "archlinux" },
+    { "name": "Alpine Linux", "url": "https://alpinelinux.org", "icon": "alpinelinux" },
+    { "name": "Debian", "url": "https://www.debian.org" },
+    { "name": "RHEL (Red-Hat)", "url": "https://www.redhat.com", "icon": "redhat" }
+  ],
+
+  "Enterprise Technology": [
+    { "name": "Gradle", "url": "https://gradle.org" },
+    { "name": "Maven", "url": "https://maven.apache.org", "icon": "apachemaven" },
+    { "name": "Java Swing", "url": "https://openjdk.org", "icon": "openjdk" },
+    { "name": "Nginx", "url": "https://nginx.org" },
+    { "name": "CI/CD", "url": "https://github.com/features/actions", "icon": "githubactions" }
+  ]
+}
