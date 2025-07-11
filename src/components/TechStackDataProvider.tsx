@@ -26,7 +26,7 @@ const TechStackDataProvider: React.FC<TechStackDataProviderProps> = ({ children 
   const [data, setData] = useState<TechConfig | null>(null);
 
   useEffect(() => {
-    fetch('/config/iconconfig.json')
+    fetch('./config/iconconfig.json')
       .then(res => res.json())
       .then(setData)
       .catch(() => setData(null));
