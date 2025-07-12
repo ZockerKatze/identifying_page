@@ -37,7 +37,7 @@
   "ContactIcons": [
     { "name": "Gmail", "icon": "gmail", "url": "mailto:seppmutterman@gmail.com", "display": "seppmutterman@gmail.com" },
     { "name": "Instagram", "icon": "instagram", "url": "https://instagram.com/rattatwinko", "display": "@rattatwinko" },
-    { "name": "Discord", "icon": "discord", "url": "#", "display": "@rattatwingo" },
+    { "name": "Discord", "icon": "discord", "url": "", "display": "@rattatwingo" },
     { "name": "TikTok", "icon": "tiktok", "url": "https://tiktok.com/@rattatwingo", "display": "@rattatwingo" },
     { "name": "GitHub", "icon": "github", "url": "https://github.com/ZockerKatze", "display": "@rattatwinko" }
   ],
@@ -45,6 +45,15 @@
   "InfrastructureServices": [
     { "name": "REST API", "url": "https://fastapi.tiangolo.com/", "icon": "fastapi" },
     { "name": "CasaOS", "url":"https://casaos.zimaspace.com/", "icon":"linux" },
-    { "name": "Gitea", "url": "https://about.gitea.com/", "icon":"gitea" }
+    { "name": "Gitea", "url": "https://about.gitea.com/", "icon":"gitea" },
+    { "name": "Nginx", "url": "https://nginx.org", "icon":"nginx" }
+  ],
+
+  "Experience": [
+    { "name": "Linux", "duration": "4+ years", "icon": "linux" },
+    { "name": "Docker", "duration": "2+ years", "icon": "docker" },
+    { "name": "Networking", "duration": "3+ years", "icon": "cisco" },
+    { "name": "Openmediavault", "duration": "3 years", "icon": "truenas" },
+    { "name": "Git", "duration": "2+ years", "icon": "git" }
   ]
 }

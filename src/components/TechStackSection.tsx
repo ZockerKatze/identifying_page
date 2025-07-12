@@ -57,7 +57,8 @@ const TechStackSection: React.FC = () => (
         data ? (
           <div className="section-content">
             {Object.entries(data)
-              .filter(([category]) => category !== 'ContactIcons' && category !== 'InfrastructureServices')
+              /* We filter out any others here. If anything goes wrong check this */
+              .filter(([category]) => category !== 'ContactIcons' && category !== 'InfrastructureServices' && category !== 'Experience')
               .map(([category, items]) => (
                 <div className="subsection" key={category}>
                   <h3 className="subsection-title">{category}</h3>

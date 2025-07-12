@@ -1,4 +1,38 @@
+'use client'
 import React from 'react';
+import UniversalDataProvider from './UniversalDataProvider';
+
+{/*
+  @description   => ExperienceSection displays experience items using data from iconconfig.json.
+    @description_iconconfig.json => If you want to modify experience items then do it there. no actual code has to be written.
+  @used_components => UniversalDataProvider
+  @icon_source   => SimpleIcons (check the link below)
+*/}
+
+const getIconUrl = (name: string, icon?: string) => {
+  const slug = icon ? icon :
+    name
+      .toLowerCase()
+      .replace(/\s+/g, '')
+      .replace(/\+/g, 'plus')
+      .replace(/\./g, 'dot')
+      .replace(/\#/g, 'sharp');
+  return `https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/${slug}.svg`;
+};
+
+interface ExperienceItemProps {
+  name: string;
+  duration: string;
+  icon?: string;
+}
+
+const ExperienceItem: React.FC<ExperienceItemProps> = ({ name, duration, icon }) => (
+  <div className="experience-item">
+    <img src={getIconUrl(name, icon)} alt={name} className="tech-icon" />
+    <span className="experience-item-name">{name}</span>
+    <span className="experience-item-duration">{duration}</span>
+  </div>
+);
 
 const ExperienceSection: React.FC = () => (
   <section>
@@ -11,30 +45,28 @@ const ExperienceSection: React.FC = () => (
       </svg>
       ./experience.log
     </h2>
-    <div className="section-content">
-      <div className="experience-list">
-        <div className="experience-item">
-          <span className="experience-item-name">Linux</span>
-          <span className="experience-item-duration">4+ years</span>
-        </div>
-        <div className="experience-item">
-          <span className="experience-item-name">Docker</span>
-          <span className="experience-item-duration">2+ years</span>
-        </div>
-        <div className="experience-item">
-          <span className="experience-item-name">Networking</span>
-          <span className="experience-item-duration">3+ years</span>
-        </div>
-        <div className="experience-item">
-          <span className="experience-item-name">Openmediavault</span>
-          <span className="experience-item-duration">3 year</span>
-        </div>
-        <div className="experience-item">
-          <span className="experience-item-name">Git</span>
-          <span className="experience-item-duration">2+ years</span>
-        </div>
-      </div>
-    </div>
+    {/*
+      @description      => Loads experience data from iconconfig.json and renders each experience item with icons.
+      @used_components  => UniversalDataProvider, ExperienceItem
+      @data_source      => /public/iconconfig.json
+    */}
+    <UniversalDataProvider configPath="/config/iconconfig.json">
+      {(data) => {
+        if (!data || typeof data !== 'object' || !('Experience' in data)) {
+          return <div className="section-content">Loading experience data...</div>;
+        }
+        const experienceItems = (data as { Experience: Array<{ name: string; duration: string; icon?: string }> }).Experience;
+        return (
+          <div className="section-content">
+            <div className="experience-list">
+              {experienceItems.map((item) => (
+                <ExperienceItem key={item.name} name={item.name} duration={item.duration} icon={item.icon} />
+              ))}
+            </div>
+          </div>
+        );
+      }}
+    </UniversalDataProvider>
   </section>
 );
 
