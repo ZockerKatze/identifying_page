@@ -1,4 +1,5 @@
 import React from 'react';
+import AgeCalculator from './AgeCalculator';
 
 const AboutSection: React.FC = () => (
   <section>
@@ -11,7 +12,8 @@ const AboutSection: React.FC = () => (
     </h2>
     <div className="section-content">
       <p className="about-text">
-        Self-taught in IT with emphasis on virtualization and local environment hosting. Experienced across multiple platforms.
+        I make Computers do Stuff. <br />
+        I am <i><AgeCalculator birthDate={new Date(2010, 2, 9)} /></i> Years old. <br />
       </p>
     </div>
   </section>

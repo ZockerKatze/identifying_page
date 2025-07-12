@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import ClientOverlayWrapper from '../components/ClientOverlayWrapper';
+import BirthdayConfetti from '../components/BirthdayConfetti';
 
 export const metadata: Metadata = {
   title: 'rattatwinko.sh',
   description: 'Developer portfolio',
 }
 
-const SCRATCH_ENABLED = false; {/* This is only used for scratching */}
 
 export default function RootLayout({
   children,
@@ -21,7 +20,7 @@ export default function RootLayout({
       </head>
       <body>
         <div id="modal-root"></div>
-        {SCRATCH_ENABLED && <ClientOverlayWrapper />}
+        <BirthdayConfetti birthDate={new Date(2010, 2, 9)} />
         {children}
       </body>
     </html>
