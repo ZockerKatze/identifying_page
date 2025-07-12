@@ -10,11 +10,24 @@ const AboutSection: React.FC = () => (
       </svg>
       ./about.sh
     </h2>
-    <div className="section-content">
-      <p className="about-text">
-        I make Computers do Stuff. <br />
-        I am <i><AgeCalculator birthDate={new Date(2010, 2, 9)} /></i> Years old. <br />
-      </p>
+        <div className="section-content">
+      <div className="about-text">
+        <p>I make Computers do Stuff.</p>
+        <p>I am <i><AgeCalculator birthDate={new Date(2010, 2, 9)} /></i> Years old.</p>
+        <div style={{ margin: "10px 0", opacity: 0.5 }}>
+          <hr />
+        </div>
+        <p>Sometimes I do <strong style={{ fontWeight: 700, fontStyle: "italic" }}>Frontend</strong> but most of the time I reside in the <strong style={{ fontWeight: 700, fontStyle: "italic" }}>Backend</strong></p>
+        <div style={{ 
+          fontSize: "0.85em", 
+          marginTop: "0.3em", 
+          color: "var(--text-secondary)",
+          paddingLeft: "1.5em",
+          fontStyle: "italic"
+        }}>
+          FunFact: I did the <strong style={{ fontWeight: 700, fontStyle: "italic" }}>Frontend</strong> to this Website!
+        </div>
+      </div>
     </div>
   </section>
 );
