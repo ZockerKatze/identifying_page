@@ -10,6 +10,13 @@ export const APPLETS = [
     width: 640,
     height: 480,
   },
+  {
+    label: "Tetris Java Applet",
+    jar: "TetrisApplet.jar",
+    code: "TetrisApplet",
+    width: 640,
+    height: 480,
+  },
   /* For Future we add more applets here. doing these is a pain tho.
      If you want to do one then look at the JavaDocs. They help a lot
      Compiling these is done with max Java 8. JDK9 disabled the applets.
@@ -26,6 +33,14 @@ export default function LegacyApplet() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
+      {/* Disclaimer for CheerpJ */}
+      <div style={{ background: '#fffae6', color: '#a67c00', border: '1px solid #ffe58f', borderRadius: 8, padding: 16, marginBottom: 16, maxWidth: 500, textAlign: 'center', fontWeight: 'bold' }}>
+        ⚠️ Enable <a href={EXTENSION_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#4af', textDecoration: 'underline' }}>CheerpJ Applet Runner</a> for this site <br />
+        and then reload the page.<br />
+        <span style={{ fontWeight: 'normal', fontSize: '0.95em' }}>
+          (You may need to click the extension icon in your browser and allow it for this domain.)
+        </span>
+      </div>
       <label style={{ color: "#fff", marginBottom: 8 }}>
         Select Applet:{" "}
         <select value={selected} onChange={e => setSelected(Number(e.target.value))}>

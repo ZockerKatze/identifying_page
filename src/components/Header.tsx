@@ -5,18 +5,20 @@ import { TypeAnimation } from 'react-type-animation';
 
 const Header: React.FC = () => (
   <header>
-    <TypeAnimation
-      sequence={[
-        'Rattatwinko',
-        5000,
-        'ZockerKatze',
-        5000
-      ]}
-      wrapper="h1"
-      speed={10}
-      style={{ fontSize: '2em', display: 'inline-block' }}
-      repeat={Infinity}
-    />
+    <div onClick={() => window.location.href = '/java'} style={{ display: 'inline-block', cursor: 'pointer' }}>
+      <TypeAnimation
+        sequence={[
+          'Rattatwinko',
+          5000,
+          'ZockerKatze',
+          5000
+        ]}
+        wrapper="h1"
+        speed={10}
+        style={{ fontSize: '2em', display: 'inline-block' }}
+        repeat={Infinity}
+      />
+    </div>
     <br />
     <TypeAnimation
       sequence={[
