@@ -77,7 +77,7 @@ export default function LegacyApplet() {
           But then I discovered <strong>CheerpJ</strong>,a project that brings Java Applets back to life in modern browsers. I thought that was really cool and wanted to try it out myself!
         </p>
         <p style={{ margin: 0, fontWeight: 400 }}>
-          Give these applets a try! The controls are simple, and I hope you have fun playing Tetris. It's basic, but still a lot of fun!
+          Give these applets a try! The controls are simple, and I hope you have fun playing Tetris. It&apos;s basic, but still a lot of fun!
         </p>
       </div>
     </div>
