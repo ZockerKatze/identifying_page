@@ -28,8 +28,8 @@ const ProjectsSection: React.FC = () => (
     <div className="section-content cursor-help">
       <ProjectCard
         title="This Website"
-        description="It's just this Website. You don't need to know more"
-        link="https://zockerkatze.github.io/identifying_page/" /* We use the Link to the Current Site here. */
+        description="It's just this Website. You don't need to know more ; Also open the Link! I added Java Applets."
+        link="https://zockerkatze.github.io/identifying_page/java" /* We use the Link to the Current Site here. */
         recentFocus={["Finishing touches"]}
       />
     </div>
