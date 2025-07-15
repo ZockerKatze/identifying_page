@@ -5,7 +5,13 @@ import { TypeAnimation } from 'react-type-animation';
 
 const Header: React.FC = () => (
   <header>
-    <div onClick={() => window.location.href = '/java'} style={{ display: 'inline-block', cursor: 'pointer' }}>
+    <div
+      onClick={() => {
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        window.location.href = `${basePath}/java`;
+      }}
+      style={{ display: 'inline-block', cursor: 'pointer' }}
+    >
       <TypeAnimation
         sequence={[
           'Rattatwinko',
