@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Legacy Java Applet</title>
+  <style>
+  html, body {
+    background: #000 !important;
+    color: #fff !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #applet-container {
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  </style>
+</head>
+<body>
+  <div id="applet-container"></div>
+  <script>
+    // Parse query parameters
+    function getParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    const jar = getParam('jar') || 'cube/MyApplet.jar'; // can be subfolder/MyApplet.jar
+    const code = getParam('code') || 'package.MyApplet';   // can be package.MyApplet
+    const width = getParam('width') || 400;
+    const height = getParam('height') || 200;
+
+    // Create the applet element
+    const applet = document.createElement('applet');
+    applet.setAttribute('archive', jar);
+    applet.setAttribute('code', code);
+    applet.setAttribute('width', width);
+    applet.setAttribute('height', height);
+
+    document.getElementById('applet-container').appendChild(applet);
+  </script>
+</body>
+</html> 
