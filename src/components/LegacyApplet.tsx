@@ -41,22 +41,44 @@ export default function LegacyApplet() {
           (You may need to click the extension icon in your browser and allow it for this domain.)
         </span>
       </div>
-      <label style={{ color: "#fff", marginBottom: 8 }}>
-        Select Applet:{" "}
-        <select value={selected} onChange={e => setSelected(Number(e.target.value))}>
-          {APPLETS.map((a, i) => (
-            <option value={i} key={a.label}>{a.label}</option>
-          ))}
-        </select>
-      </label>
-      <iframe
-        src={src}
-        style={{ width: applet.width + 20, height: applet.height + 40, border: "none", background: "#fff" }}
-        title="Legacy Java Applet"
-      />
-      <div style={{ marginTop: 24, maxWidth: 500, textAlign: "center", color: "#fff", background: "#222", padding: 16, borderRadius: 8 }}>
-        <strong>Note:</strong> This Java applet requires the <a href={EXTENSION_URL} target="_blank" rel="noopener noreferrer" style={{ color: "#4af" }}>CheerpJ Applet Runner</a> browser extension.<br />
-        If you do not see the applet above, please install the extension and reload the page. <b>Be patient with this. Its slow as shit.</b>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#111', border: '2px solid rgba(128,128,128,0.5)', borderRadius: 8, padding: 24, marginBottom: 24 }}>
+        <label style={{ color: "#fff", marginBottom: 8 }}>
+          Select Applet:{" "}
+          <select value={selected} onChange={e => setSelected(Number(e.target.value))}>
+            {APPLETS.map((a, i) => (
+              <option value={i} key={a.label}>{a.label}</option>
+            ))}
+          </select>
+        </label>
+        <iframe
+          src={src}
+          style={{ width: applet.width + 20, height: applet.height + 40, border: "none", background: "#fff" }}
+          title="Legacy Java Applet"
+        />
+      </div>
+      <div style={{
+        marginTop: 32,
+        maxWidth: 600,
+        textAlign: "center",
+        color: "#fff",
+        background: "#111",
+        border: "2px solid rgba(128,128,128,0.5)",
+        borderRadius: 10,
+        padding: 36,
+        marginBottom: 32,
+        lineHeight: 1.7,
+        letterSpacing: 0.01,
+      }}>
+        <p style={{ fontWeight: 'bold', fontSize: '1.2em', marginBottom: 18 }}>Back to the future:</p>
+        <p style={{ margin: '0 0 22px 0', fontWeight: 400 }}>
+          Why did I do this? Easy answer! I watched a video about Java, and they mentioned how the deprecation of Applets is really sad. I agree with that.
+        </p>
+        <p style={{ margin: '0 0 22px 0', fontWeight: 400 }}>
+          But then I discovered <strong>CheerpJ</strong>,a project that brings Java Applets back to life in modern browsers. I thought that was really cool and wanted to try it out myself!
+        </p>
+        <p style={{ margin: 0, fontWeight: 400 }}>
+          Give these applets a try! The controls are simple, and I hope you have fun playing Tetris. It's basic, but still a lot of fun!
+        </p>
       </div>
     </div>
   );

@@ -12,10 +12,11 @@ import java.awt.geom.*;
 
 */
 
-public class MyApplet extends Applet implements Runnable, MouseListener, MouseMotionListener {
+public class MyApplet extends Applet implements Runnable, MouseListener, MouseMotionListener, MouseWheelListener{
     private Thread animator;
     private double angleX = 0, angleY = 0;
     private double dragAngleX = 0, dragAngleY = 0;
+    private double zoom = 1.0;
     private int lastX, lastY;
     private boolean dragging = false;
     private float hue = 0f; // Rainbow hue value
@@ -37,6 +38,7 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
     public void init() {
         setBackground(Color.black);
         addMouseListener(this);
+        addMouseWheelListener(this);
         addMouseMotionListener(this);
     }
 
@@ -70,7 +72,7 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
     }
 
     private Point project(double x, double y, double z, int w, int h) {
-        double scale = 100;
+        double scale = 100 * zoom;
         double distance = 3;
         double factor = scale / (z + distance);
         int x2d = (int)(x * factor + w / 2);
@@ -138,6 +140,19 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
         int dy = e.getY() - lastY;
         angleY = dragAngleY + dx * 0.01;
         angleX = dragAngleX + dy * 0.01;
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        int notches = e.getWheelRotation();
+        if (notches < 0) {
+            zoom *= 1.1;
+        } else {
+            zoom /= 1.1;
+        }
+
+        // Clamp shit so we dont vanish away
+        zoom = Math.max(1.0, Math.min(zoom,2.0));
     }
 
     @Override

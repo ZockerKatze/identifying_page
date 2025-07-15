@@ -28,6 +28,7 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
     private int curType, curRot, curX, curY;
     private AudioClip themeMusic;
     private boolean paused = false;
+    private boolean muted = false;
 
     // Tetromino shapes: [type][rotation][block][x/y]
     private static final int[][][][] SHAPES = {
@@ -133,6 +134,7 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
         g.drawString("↓ or S: Soft drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 230);
         g.drawString("Space: Hard drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 245);
         g.drawString("ESC: Pause", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 260);
+        g.drawString("M: Mute", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 275);
 
         // Game over
         if (gameOver) {
@@ -210,6 +212,15 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
         char ch = e.getKeyChar();
         if (code == KeyEvent.VK_ESCAPE) {
             paused = !paused;
+            repaint();
+            return;
+        }
+        if (code == KeyEvent.VK_M) {
+            muted = !muted;
+            if (themeMusic != null) {
+                if (muted) themeMusic.stop();
+                else themeMusic.loop();
+            }
             repaint();
             return;
         }
