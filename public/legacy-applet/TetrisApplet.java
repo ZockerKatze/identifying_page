@@ -5,12 +5,18 @@ import java.awt.event.*;
 import java.net.URL;
 import java.util.*;
 
+/*
+ * This code was partially copied from GitHub Gist, mainly the tetremino part. (shapes variable)
+ * If you want to learn Java Applets. Then you can use this freely! I dont care what you do with this.
+ * its MiT if you will
+ */
+
 public class TetrisApplet extends Applet implements Runnable, KeyListener {
     private static final int ROWS = 20, COLS = 10, BLOCK = 24;
-    private static final int SIDEBAR = 120;
+    private static final int SIDBAR = 120;
     private static final int APPLET_WIDTH = 640, APPLET_HEIGHT = 480;
     private static final int PLAYFIELD_WIDTH = COLS * BLOCK;
-    private static final int TOTAL_WIDTH = PLAYFIELD_WIDTH + SIDEBAR;
+    private static final int TOTAL_WIDTH = PLAYFIELD_WIDTH + SIDBAR;
     private static final int ORIGIN_X = (APPLET_WIDTH - TOTAL_WIDTH) / 2;
     private static final int ORIGIN_Y = (APPLET_HEIGHT - ROWS * BLOCK) / 2;
     private int[][] board = new int[ROWS][COLS];
@@ -102,7 +108,7 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
 
         // Sidebar background
         g.setColor(new Color(30,30,30));
-        g.fillRect(ORIGIN_X + PLAYFIELD_WIDTH, ORIGIN_Y, SIDEBAR, ROWS * BLOCK);
+        g.fillRect(ORIGIN_X + PLAYFIELD_WIDTH, ORIGIN_Y, SIDBAR, ROWS * BLOCK);
 
         // Score
         g.setColor(Color.WHITE);

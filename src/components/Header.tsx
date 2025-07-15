@@ -7,8 +7,7 @@ const Header: React.FC = () => (
   <header>
     <div
       onClick={() => {
-        // fallback to '/identifying_page' if env is not set
-        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/identifying_page';
+        const basePath =  '/identifying_page'; // fuck this . local shit isnt needed anyways.
         window.location.href = `${basePath}/java`;
       }}
       style={{ display: 'inline-block', cursor: 'pointer' }}
