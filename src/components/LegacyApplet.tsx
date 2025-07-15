@@ -7,8 +7,8 @@ export const APPLETS = [
     label: "3D Cube",
     jar: "MyApplet.jar",
     code: "MyApplet",
-    width: 400,
-    height: 200,
+    width: 640,
+    height: 480,
   },
   /* For Future we add more applets here. doing these is a pain tho.
      If you want to do one then look at the JavaDocs. They help a lot
@@ -21,7 +21,8 @@ const EXTENSION_URL = "https://chrome.google.com/webstore/detail/cheerpj-applet-
 export default function LegacyApplet() {
   const [selected, setSelected] = useState(0);
   const applet = APPLETS[selected];
-  const src = `/legacy-applet/index.html?jar=${encodeURIComponent(applet.jar)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const src = `${basePath}/legacy-applet/index.html?jar=${encodeURIComponent(applet.jar)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
