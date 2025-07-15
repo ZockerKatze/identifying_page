@@ -4,9 +4,20 @@ import type { NextConfig } from "next";
 This is from a Template. I did not write this Code.
 */
 
+// Set basePath and env for GitHub Pages
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   // Enable static export for deployment
   output: "export",
+  
+  // Set basePath for GitHub Pages
+  basePath: isProd ? '/identifying_page' : '',
+
+  // Set env variable for use in client code
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? '/identifying_page' : '',
+  },
   
   // Optional: Add if you're deploying to GitHub Pages or similar
   // basePath: process.env.NODE_ENV === 'production' ? '/your-repo-name' : '',
