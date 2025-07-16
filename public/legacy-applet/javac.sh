@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# Usage: ./compilejava.sh [JavaFile.java]
 # Compiles the specified Java file, or all .java files in the current directory if none is specified.
 # You can override the Java version by setting JAVA_VERSION, e.g.:
 #   RUN COMMAND:
-#   JAVA_VERSION=11 bash javac.sh MyApplet.java
+#   JAVA_VERSION=8 bash javac.sh MyApplet.java
 
 JAVA_VERSION="${JAVA_VERSION:-8}"
 
@@ -31,6 +30,21 @@ fi
 
 if [ $STATUS -eq 0 ]; then
   echo "Compilation successful."
+  # Dynamically create a .jar for each .class file, including resources with the same base name
+  for classfile in *.class; do
+    [ -e "$classfile" ] || continue
+    base="${classfile%.class}"
+    jarname="$base.jar"
+    # Find resources with the same base name (e.g., .mid, .png, .wav, .mp3)
+    resources=()
+    for ext in mid png wav mp3; do
+      if [ -f "$base.$ext" ]; then
+        resources+=("$base.$ext")
+      fi
+    done
+    echo "Creating $jarname with $classfile${resources:+ and ${resources[*]}}..."
+    jar cf "$jarname" "$classfile" "${resources[@]}"
+  done
 else
   echo "Compilation failed."
   exit 3

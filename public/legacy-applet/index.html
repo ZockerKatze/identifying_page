@@ -22,6 +22,7 @@
 </head>
 <body>
   <div id="applet-container"></div>
+  <script src="https://cjrtnc.leaningtech.com/3.0/cj3loader.js"></script>
   <script>
     // Parse query parameters
     function getParam(name) {
@@ -41,6 +42,16 @@
     applet.setAttribute('height', height);
 
     document.getElementById('applet-container').appendChild(applet);
+
+    // Initialize CheerpJ and run applets automatically
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (window.cheerpjInit) {
+        await window.cheerpjInit();
+        if (window.cheerpjRunApplets) {
+          window.cheerpjRunApplets();
+        }
+      }
+    });
   </script>
 </body>
 </html> 

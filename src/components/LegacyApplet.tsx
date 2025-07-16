@@ -23,7 +23,7 @@ export const APPLETS = [
   */
 ];
 
-const EXTENSION_URL = "https://chrome.google.com/webstore/detail/cheerpj-applet-runner/bbmolahhldcbngedljfadjlognfaaein";
+// const EXTENSION_URL = "https://chrome.google.com/webstore/detail/cheerpj-applet-runner/bbmolahhldcbngedljfadjlognfaaein";
 
 export default function LegacyApplet() {
   const [selected, setSelected] = useState(0);
@@ -33,13 +33,8 @@ export default function LegacyApplet() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-      {/* Disclaimer for CheerpJ */}
-      <div style={{ background: '#fffae6', color: '#a67c00', border: '1px solid #ffe58f', borderRadius: 8, padding: 16, marginBottom: 16, maxWidth: 500, textAlign: 'center', fontWeight: 'bold' }}>
-        ⚠️ Enable <a href={EXTENSION_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#4af', textDecoration: 'underline' }}>CheerpJ Applet Runner</a> for this site <br />
-        and then reload the page.<br />
-        <span style={{ fontWeight: 'normal', fontSize: '0.95em' }}>
-          (You may need to click the extension icon in your browser and allow it for this domain.)
-        </span>
+      <div style={{ background: '#fffbe6', color: '#a67c00', border: '1px solid #ffe58f', borderRadius: 8, padding: 16, marginBottom: 20, maxWidth: 600, textAlign: 'center', fontWeight: 'bold', fontSize: '1.05em' }}>
+        ⚠️ CheerpJ is being loaded through the Web, it is now not depending on a Browser Extension. But has become slower.
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#111', border: '2px solid rgba(128,128,128,0.5)', borderRadius: 8, padding: 24, marginBottom: 24 }}>
         <label style={{ color: "#fff", marginBottom: 8 }}>
@@ -74,7 +69,7 @@ export default function LegacyApplet() {
           Why did I do this? Easy answer! I watched a video about Java, and they mentioned how the deprecation of Applets is really sad. I agree with that.
         </p>
         <p style={{ margin: '0 0 22px 0', fontWeight: 400 }}>
-          But then I discovered <strong>CheerpJ</strong>,a project that brings Java Applets back to life in modern browsers. I thought that was really cool and wanted to try it out myself!
+          But then I discovered <strong>CheerpJ</strong>, a project that brings Java Applets back to life in modern browsers. I thought that was really cool and wanted to try it out myself!
         </p>
         <p style={{ margin: 0, fontWeight: 400 }}>
           Give these applets a try! The controls are simple, and I hope you have fun playing Tetris. It&apos;s basic, but still a lot of fun!
