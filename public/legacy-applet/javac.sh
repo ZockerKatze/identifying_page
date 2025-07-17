@@ -29,21 +29,33 @@ STATUS=$?
 
 if [ $STATUS -eq 0 ]; then
   echo "Compilation successful."
-  # Find resources with the same base name (e.g., .mid, .png, .wav, .mp3)
+  # Find all .class files for this base (main and inner classes)
+  classfiles=( "$BASENAME.class" "$BASENAME"\$*.class )
+  # Only include files that exist
+  tojar=()
+  for f in "${classfiles[@]}"; do
+    for match in $f; do
+      [ -e "$match" ] && tojar+=("$match")
+    done
+  done
+
+  # Add resources as before
   resources=()
   for ext in mid png wav mp3; do
     if [ -f "$BASENAME.$ext" ]; then
       resources+=("$BASENAME.$ext")
     fi
   done
-  echo "Creating $JARFILE with $CLASSFILE${resources:+ and ${resources[*]}}..."
-  jar cf "$JARFILE" "$CLASSFILE" "${resources[@]}"
+
+  echo "Creating $JARFILE with ${tojar[*]}${resources:+ and ${resources[*]}}..."
+  jar cf "$JARFILE" "${tojar[@]}" "${resources[@]}"
+  rm -f "${tojar[@]}"
   JAR_STATUS=$?
   if [ $JAR_STATUS -eq 0 ]; then
     echo "JAR created: $JARFILE"
     # Remove the .class file after creating the jar
-    rm -f "$CLASSFILE"
-    echo "Removed $CLASSFILE, only $JARFILE remains."
+    # The .class files are now removed by the new logic
+    echo "Removed all .class files, only $JARFILE remains."
   else
     echo "Failed to create JAR archive."
     exit 4
