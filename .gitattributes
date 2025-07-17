@@ -1,1 +1,2 @@
-*.css liguist-vendor
+*.css linguist-vendored
+*.java linguist-vendored
