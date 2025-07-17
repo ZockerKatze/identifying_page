@@ -1,2 +1,4 @@
 *.css linguist-vendored
 *.java linguist-vendored
+*.shell linguist-vendored
+*.sh linguist-vendored

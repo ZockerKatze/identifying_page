@@ -63,9 +63,6 @@ export default function LegacyApplet() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "60vh" }}>
-      <div style={{ background: '#fffbe6', color: '#a67c00', border: '1px solid #ffe58f', borderRadius: 8, padding: 16, marginBottom: 20, maxWidth: 600, textAlign: 'center', fontWeight: 'bold', fontSize: '1.05em' }}>
-        ⚠️ CheerpJ is being loaded through the Web, it is now not depending on a Browser Extension. But has become slower.
-      </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#111', border: '2px solid rgba(128,128,128,0.5)', borderRadius: 8, padding: 24, marginBottom: 24 }}>
         <label style={{ color: "#fff", marginBottom: 8 }}>
           Select Applet:{" "}
@@ -81,6 +78,35 @@ export default function LegacyApplet() {
           title="Legacy Java Applet"
         />
       </div>
+      <div style={{
+        margin: '0 auto 10px auto',
+        maxWidth: 600,
+        width: '100%',
+        textAlign: 'center',
+        color: '#fff',
+        background: '#181818',
+        border: '2px solid rgba(128,128,128,0.5)',
+        borderRadius: 10,
+        padding: 28,
+        lineHeight: 1.7,
+        letterSpacing: 0.01,
+        boxShadow: '0 2px 12px rgba(0,0,0,0.12)'
+      }}>
+        <a
+          href="https://github.com/ZockerKatze/identifying_page/tree/main/public/legacy-applet"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', color: 'inherit', gap: 16 }}
+        >
+          <span style={{ fontWeight: 'bold', fontSize: '1.05em' }}>
+            View the Source Code on GitHub:
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+            <path fill="white" d="M12 0.296C5.37 0.296 0 5.665 0 12.296c0 5.289 3.438 9.772 8.205 11.367.6.111.82-.26.82-.577v-2.234c-3.338.725-4.033-1.61-4.033-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.746.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.776.42-1.305.763-1.605-2.665-.304-5.466-1.334-5.466-5.932 0-1.31.468-2.381 1.235-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.005 2.045.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.653 1.652.242 2.873.118 3.176.77.84 1.233 1.911 1.233 3.221 0 4.61-2.805 5.625-5.475 5.921.43.372.823 1.103.823 2.222v3.293c0 .319.218.694.825.576C20.565 22.065 24 17.584 24 12.296 24 5.665 18.627 0.296 12 0.296z"/>
+          </svg>
+        </a>
+      </div>
+
       <div style={{
         marginTop: 32,
         maxWidth: 600,
@@ -105,7 +131,6 @@ export default function LegacyApplet() {
           Give these applets a try! The controls are simple, and I hope you have fun playing Tetris. It&apos;s basic, but still a lot of fun!
         </p>
       </div>
-      {/* Game Contents Section */}
       <div style={{
         marginBottom: 32,
         maxWidth: 600,
