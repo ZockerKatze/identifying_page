@@ -273,9 +273,6 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
                 g2.drawString(degStr, degX, y + 145);
             }
         } catch (Exception ex) {}
-        // Tip for degree input: always above buttons, inside box
-        g2.setColor(Color.LIGHT_GRAY);
-        g2.drawString("Tip: Use the 'd' extension for degrees", x + 20, y + 170);
         // Buttons
         g2.setColor(Color.LIGHT_GRAY);
         g2.fillRoundRect(x + 30, y + 180, 70, 28, 10, 10);
