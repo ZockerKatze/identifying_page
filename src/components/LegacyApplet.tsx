@@ -17,6 +17,13 @@ export const APPLETS = [
     width: 640,
     height: 480,
   },
+  {
+    label: "SineWave",
+    jar: "sinewave.jar",
+    code: "sinewave",
+    width: 640,
+    height: 480,
+  }
   /* For Future we add more applets here. doing these is a pain tho.
      If you want to do one then look at the JavaDocs. They help a lot
      Compiling these is done with max Java 8. JDK9 disabled the applets.

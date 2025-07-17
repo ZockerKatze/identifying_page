@@ -1,10 +1,8 @@
-package applets;
-
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import javax.swing.*;
+// Removed: import javax.swing.*;
 
 public class sinewave extends Applet implements MouseWheelListener, MouseMotionListener, KeyListener, Runnable {
 
@@ -27,11 +25,16 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
 
         double getY(double x) {
             double val = frequency * x + phaseShift;
-            return switch (type) {
-                case SINE -> amplitude * Math.sin(val);
-                case SQUARE -> amplitude * Math.signum(Math.sin(val));
-                case TRIANGLE -> amplitude * (2 / Math.PI) * Math.asin(Math.sin(val));
-            };
+            switch (type) {
+                case SINE:
+                    return amplitude * Math.sin(val);
+                case SQUARE:
+                    return amplitude * Math.signum(Math.sin(val));
+                case TRIANGLE:
+                    return amplitude * (2 / Math.PI) * Math.asin(Math.sin(val));
+                default:
+                    return 0;
+            }
         }
     }
 
@@ -200,32 +203,56 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
         }
     }
 
+    // Replace createWaveDialog with AWT-only dialog
     Wave createWaveDialog(WaveType type) {
-        JTextField ampField = new JTextField("1.0");
-        JTextField freqField = new JTextField("1.0");
-        JTextField phaseField = new JTextField("0.0");
+        final Dialog dialog = new Dialog((Frame) null, "New " + type + " Wave Parameters", true);
+        dialog.setLayout(new GridLayout(0, 2));
+        Label ampLabel = new Label("Amplitude:");
+        TextField ampField = new TextField("1.0");
+        Label freqLabel = new Label("Frequency:");
+        TextField freqField = new TextField("1.0");
+        Label phaseLabel = new Label("Phase Shift:");
+        TextField phaseField = new TextField("0.0");
+        Button okButton = new Button("OK");
+        Button cancelButton = new Button("Cancel");
 
-        JPanel panel = new JPanel(new GridLayout(0, 1));
-        panel.add(new JLabel("Amplitude:"));
-        panel.add(ampField);
-        panel.add(new JLabel("Frequency:"));
-        panel.add(freqField);
-        panel.add(new JLabel("Phase Shift:"));
-        panel.add(phaseField);
+        dialog.add(ampLabel);
+        dialog.add(ampField);
+        dialog.add(freqLabel);
+        dialog.add(freqField);
+        dialog.add(phaseLabel);
+        dialog.add(phaseField);
+        dialog.add(okButton);
+        dialog.add(cancelButton);
 
-        int result = JOptionPane.showConfirmDialog(null, panel,
-                "New " + type + " Wave Parameters", JOptionPane.OK_CANCEL_OPTION);
+        final Wave[] result = new Wave[1];
 
-        if (result == JOptionPane.OK_OPTION) {
-            try {
-                double amp = Double.parseDouble(ampField.getText());
-                double freq = Double.parseDouble(freqField.getText());
-                double phase = Double.parseDouble(phaseField.getText());
-                Color color = availableColors[waves.size() % availableColors.length];
-                return new Wave(amp, freq, phase, color, type);
-            } catch (NumberFormatException ignored) {}
-        }
-        return null;
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double amp = Double.parseDouble(ampField.getText());
+                    double freq = Double.parseDouble(freqField.getText());
+                    double phase = Double.parseDouble(phaseField.getText());
+                    Color color = availableColors[waves.size() % availableColors.length];
+                    result[0] = new Wave(amp, freq, phase, color, type);
+                } catch (NumberFormatException ex) {
+                    result[0] = null;
+                }
+                dialog.setVisible(false);
+            }
+        });
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                result[0] = null;
+                dialog.setVisible(false);
+            }
+        });
+
+        dialog.setSize(300, 180);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+        dialog.dispose();
+        return result[0];
     }
 
     @Override
@@ -273,42 +300,55 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
         Wave wave = waves.get(selectedWave);
 
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP -> wave.amplitude += 0.1;
-            case KeyEvent.VK_DOWN -> wave.amplitude -= 0.1;
-            case KeyEvent.VK_LEFT -> wave.phaseShift -= 0.1;
-            case KeyEvent.VK_RIGHT -> wave.phaseShift += 0.1;
-            case KeyEvent.VK_N -> {
+            case KeyEvent.VK_UP:
+                wave.amplitude += 0.1;
+                break;
+            case KeyEvent.VK_DOWN:
+                wave.amplitude -= 0.1;
+                break;
+            case KeyEvent.VK_LEFT:
+                wave.phaseShift -= 0.1;
+                break;
+            case KeyEvent.VK_RIGHT:
+                wave.phaseShift += 0.1;
+                break;
+            case KeyEvent.VK_N: {
                 Wave newWave = createWaveDialog(WaveType.SINE);
                 if (newWave != null) {
                     waves.add(newWave);
                     selectedWave = waves.size() - 1;
                 }
+                break;
             }
-            case KeyEvent.VK_T -> {
+            case KeyEvent.VK_T: {
                 Wave newWave = createWaveDialog(WaveType.TRIANGLE);
                 if (newWave != null) {
                     waves.add(newWave);
                     selectedWave = waves.size() - 1;
                 }
+                break;
             }
-            case KeyEvent.VK_Q -> {
+            case KeyEvent.VK_Q: {
                 Wave newWave = createWaveDialog(WaveType.SQUARE);
                 if (newWave != null) {
                     waves.add(newWave);
                     selectedWave = waves.size() - 1;
                 }
+                break;
             }
-            case KeyEvent.VK_DELETE -> {
+            case KeyEvent.VK_DELETE:
                 if (selectedWave > 0) {
                     waves.remove(selectedWave);
                     if (selectedWave >= waves.size()) selectedWave = waves.size() - 1;
                 }
-            }
-            case KeyEvent.VK_S -> selectedWave = (selectedWave + 1) % waves.size();
-            case KeyEvent.VK_H -> {
+                break;
+            case KeyEvent.VK_S:
+                selectedWave = (selectedWave + 1) % waves.size();
+                break;
+            case KeyEvent.VK_H:
                 showHelp = !showHelp;
                 repaint();
-            }
+                break;
         }
         staticLayer = null;
         repaint();
