@@ -47,6 +47,13 @@ if [ $STATUS -eq 0 ]; then
     fi
   done
 
+  # For TetrisApplet, include all .mid files in the directory
+  if [ "$BASENAME" = "TetrisApplet" ]; then
+    for f in *.wav; do
+      [ -e "$f" ] && resources+=("$f")
+    done
+  fi
+
   echo "Creating $JARFILE with ${tojar[*]}${resources:+ and ${resources[*]}}..."
   jar cf "$JARFILE" "${tojar[@]}" "${resources[@]}"
   rm -f "${tojar[@]}"

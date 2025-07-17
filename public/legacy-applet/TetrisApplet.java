@@ -57,16 +57,23 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
         spawnPiece();
         gameThread = new Thread(this);
         gameThread.start();
+    }
 
-        // Load and play theme music
+        // Load and play theme music - deprecated
+        /* 
         try {
-            URL url = new URL(getDocumentBase(), "tetristheme.mid");
-            themeMusic = getAudioClip(url);
-            themeMusic.loop();
+            URL url = getClass().getResource("/tetristheme.wav");
+            if (url != null) {
+                themeMusic = getAudioClip(url);
+                themeMusic.loop();
+            } else {
+                System.out.println("Music not found in JAR!");
+            }
         } catch (Exception e) {
             System.out.println("Music not found or failed to load.");
         }
     }
+        */
 
     public void run() {
         while (running) {
@@ -134,7 +141,6 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
         g.drawString("↓ or S: Soft drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 230);
         g.drawString("Space: Hard drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 245);
         g.drawString("ESC: Pause", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 260);
-        g.drawString("M: Mute", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 275);
 
         // Game over
         if (gameOver) {
@@ -215,7 +221,7 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
             repaint();
             return;
         }
-        if (code == KeyEvent.VK_M) {
+/*         if (code == KeyEvent.VK_M) {
             muted = !muted;
             if (themeMusic != null) {
                 if (muted) themeMusic.stop();
@@ -223,7 +229,7 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
             }
             repaint();
             return;
-        }
+        } */
         if (paused) return;
         switch (code) {
             case KeyEvent.VK_LEFT:
