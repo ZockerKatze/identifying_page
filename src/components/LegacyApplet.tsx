@@ -42,7 +42,8 @@ export default function LegacyApplet() {
 
   const applet = APPLETS[selected];
   const jarUrl = `https://zockerkatze.github.io/identifying_page/legacy-applet/src/jars/${applet.jar}`;
-  const src = `${basePath}/legacy-applet/index.html?jar=${encodeURIComponent(jarUrl)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
+  //const codeURL = `https://zockerkatze.github.io/identifying_page/legacy-applet/src/classes/${applet.java}`;
+  const src = `/identifying_page/legacy-applet/index.html?jar=${encodeURIComponent(jarUrl)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
 
   const demoImages = [
     { src: `${basePath}/demoimages/cube.png`, alt: '3D Cube' },
