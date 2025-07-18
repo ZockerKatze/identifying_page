@@ -41,7 +41,7 @@ export default function LegacyApplet() {
   const [zoomed, setZoomed] = useState(false);
 
   const applet = APPLETS[selected];
-  const jarUrl = `${basePath}/legacy-applet/src/jars/${applet.jar}`;
+  const jarUrl = `https://zockerkatze.github.io/identifying_page/legacy-applet/src/jars/${applet.jar}`;
   const src = `${basePath}/legacy-applet/index.html?jar=${encodeURIComponent(jarUrl)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
 
   const demoImages = [
