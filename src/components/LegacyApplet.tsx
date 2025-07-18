@@ -4,30 +4,33 @@ import type {} from 'react/jsx-runtime';
 import Image from 'next/image';
 
 export const APPLETS = [
+  /* Define the fucking Paths like this
+   * /legacy-applet/src/jars/appletjar.jar
+   */
   {
     label: "3D Cube",
-    jar: "/legacy-applet/src/jars/MyApplet.jar",
+    jar: "legacy-applet/src/jars/MyApplet.jar",
     code: "MyApplet",
     width: 640,
     height: 480,
   },
   {
     label: "Tetris Java Applet",
-    jar: "/legacy-applet/src/jars/TetrisApplet.jar",
+    jar: "legacy-applet/src/jars/TetrisApplet.jar",
     code: "TetrisApplet",
     width: 640,
     height: 480,
   },
   {
     label: "SineWave",
-    jar: "/legacy-applet/src/jars/sinewave.jar",
+    jar: "legacy-applet/src/jars/sinewave.jar",
     code: "sinewave",
     width: 640,
     height: 480,
   },
   {
     label: "Snake",
-    jar: "/legacy-applet/src/jars/SnakeApplet.jar",
+    jar: "legacy-applet/src/jars/SnakeApplet.jar",
     code: "SnakeApplet",
     width: 640,
     height: 480,
@@ -46,7 +49,7 @@ export default function LegacyApplet() {
   const [zoomed, setZoomed] = useState(false);
   const applet = APPLETS[selected];
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  const src = `${basePath}/legacy-applet/index.html?jar=${encodeURIComponent(applet.jar)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
+  const src = `${basePath}/legacy-applet/index.html?jar=${encodeURIComponent(basePath + '/' + applet.jar)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
 
   // Demo images for the carousel
   const demoImages = [
