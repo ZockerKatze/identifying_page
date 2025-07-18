@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# Compiles the specified Java file, or all .java files in the current directory if none is specified.
-# You can override the Java version by setting JAVA_VERSION, e.g.:
-#   RUN COMMAND:
-#   JAVA_VERSION=8 bash javac.sh MyApplet.java
-
 JAVA_VERSION="${JAVA_VERSION:-8}"
 
 if [ $# -eq 0 ]; then
@@ -21,6 +16,7 @@ fi
 BASENAME="${JAVA_FILE%.java}"
 CLASSFILE="$BASENAME.class"
 JARFILE="$BASENAME.jar"
+MANIFEST_FILE="manifest.mf"
 
 # Compile the Java file
 echo "Compiling $JAVA_FILE with -source $JAVA_VERSION -target $JAVA_VERSION..."
@@ -29,9 +25,9 @@ STATUS=$?
 
 if [ $STATUS -eq 0 ]; then
   echo "Compilation successful."
-  # Find all .class files for this base (main and inner classes)
+
+  # Collect class files
   classfiles=( "$BASENAME.class" "$BASENAME"\$*.class )
-  # Only include files that exist
   tojar=()
   for f in "${classfiles[@]}"; do
     for match in $f; do
@@ -39,7 +35,7 @@ if [ $STATUS -eq 0 ]; then
     done
   done
 
-  # Add resources as before
+  # Collect additional resources
   resources=()
   for ext in mid png wav mp3; do
     if [ -f "$BASENAME.$ext" ]; then
@@ -47,22 +43,24 @@ if [ $STATUS -eq 0 ]; then
     fi
   done
 
-  # For TetrisApplet, include all .mid files in the directory
   if [ "$BASENAME" = "TetrisApplet" ]; then
     for f in *.wav; do
       [ -e "$f" ] && resources+=("$f")
     done
   fi
 
-  echo "Creating $JARFILE with ${tojar[*]}${resources:+ and ${resources[*]}}..."
-  jar cf "$JARFILE" "${tojar[@]}" "${resources[@]}"
-  rm -f "${tojar[@]}"
+  # Create a manifest with Main-Class set
+  echo "Main-Class: $BASENAME" > "$MANIFEST_FILE"
+  echo "" >> "$MANIFEST_FILE"  # mandatory blank line
+
+  echo "Creating $JARFILE with main class '$BASENAME'..."
+  jar cfm "$JARFILE" "$MANIFEST_FILE" "${tojar[@]}" "${resources[@]}"
+
   JAR_STATUS=$?
   if [ $JAR_STATUS -eq 0 ]; then
     echo "JAR created: $JARFILE"
-    # Remove the .class file after creating the jar
-    # The .class files are now removed by the new logic
-    echo "Removed all .class files, only $JARFILE remains."
+    rm -f "${tojar[@]}" "$MANIFEST_FILE"
+    echo "Cleaned up .class files and manifest."
   else
     echo "Failed to create JAR archive."
     exit 4
@@ -71,3 +69,4 @@ else
   echo "Compilation failed."
   exit 3
 fi
+
