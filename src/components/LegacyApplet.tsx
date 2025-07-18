@@ -36,13 +36,27 @@ export const APPLETS = [
 ];
 
 export default function LegacyApplet() {
+
+/*
+ * 
+ * This section of the code is fucking terrible (partly cause it was vibed into exsistance)
+ * But, if you are willing to accept your fate and fix the AI's terrible code then please go at it,
+ * and waste your fucking time.
+ * 
+ * Time Wasted                : 2h and 32 fucking minutes
+ * Headaches because of this  : 2
+ * Aspirins taken             : 1
+ * 
+ * Please if you modify (NOT ON PROD) increase the fucking timer
+ * 
+ */
+
   const [selected, setSelected] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [zoomed, setZoomed] = useState(false);
 
   const applet = APPLETS[selected];
   const jarUrl = `https://zockerkatze.github.io/identifying_page/legacy-applet/src/jars/${applet.jar}`;
-  //const codeURL = `https://zockerkatze.github.io/identifying_page/legacy-applet/src/classes/${applet.java}`;
   const src = `/identifying_page/legacy-applet/index.html?jar=${encodeURIComponent(jarUrl)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
 
   const demoImages = [
