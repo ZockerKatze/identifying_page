@@ -54,6 +54,7 @@ export default function LegacyApplet() {
     { src: `${basePath}/demoimages/tetris.png`, alt: 'Tetris' },
     { src: `${basePath}/demoimages/snake.png`, alt: 'Snake' },
     { src: `${basePath}/demoimages/waves.png`, alt: 'Waves' },
+    { src: `${basePath}/demoimages/profiler.png`, alt:'JProfiler'}
   ];
 
   const handlePrev = () => setCarouselIndex((prev) => (prev - 1 + demoImages.length) % demoImages.length);
@@ -149,7 +150,8 @@ export default function LegacyApplet() {
           <li style={{ marginBottom: 12 }}><strong>3D Cube</strong> – Why? To test the Applet&apos;s initial functionality. If this runs, everything else will.</li>
           <li style={{ marginBottom: 12 }}><strong>Tetris</strong> – Why? I got this idea from a friend while talking about <i>some redacted topic</i>.</li>
           <li style={{ marginBottom: 12 }}><strong>Sine Wave Simulator</strong> – I did this to prove my Mathematics Teacher wrong. <i>I hate him</i>.</li>
-          <li><strong>Snake</strong> – Why? I already wrote a Java Snake and I just had to rewrite it to some extent to make it work with Java applets.</li>
+          <li style={{ marginBottom: 12 }}><strong>Snake</strong> – Why? I already wrote a Java Snake and I just had to rewrite it to some extent to make it work with Java applets.</li>
+          <li><strong>Java Applet Profiler</strong> - If you are looking to develop Java Applets yourself then you might want to checkout the Profiler I wrote. I uses a drag and drop system for .jar or .class Files that come from compiled Java. You can Profile the Runtime of your Java Applets there!</li>
         </ul>
         <hr style={{ opacity: 0.5, margin: '28px 0 18px 0' }} />
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
