@@ -58,8 +58,8 @@ public class viewer extends JFrame {
         });
         repaintTimer.start();
 
-        // Setup Ctrl+D to toggle overlay visibility
-        setupToggleOverlayKeyBinding();
+        // Setup global Ctrl+D to toggle overlay visibility
+        setupGlobalToggleOverlayKeyBinding();
 
         // Set JFrame properties
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -94,19 +94,18 @@ public class viewer extends JFrame {
         overlay.setLocation(loc.x + 5, loc.y + 25);
     }
 
-    private void setupToggleOverlayKeyBinding() {
-        KeyStroke ctrlD = KeyStroke.getKeyStroke("control D");
-        InputMap im = appletPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        ActionMap am = appletPanel.getActionMap();
-
-        im.put(ctrlD, "toggleOverlay");
-        am.put("toggleOverlay", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                overlayVisible = !overlayVisible;
-                overlay.setVisible(overlayVisible);
-                repaint();
+    private void setupGlobalToggleOverlayKeyBinding() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                // Check if Ctrl+D pressed
+                if ((e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) != 0 && e.getKeyCode() == KeyEvent.VK_D) {
+                    overlayVisible = !overlayVisible;
+                    overlay.setVisible(overlayVisible);
+                    repaint();
+                    return true;  // consume event
+                }
             }
+            return false;
         });
     }
 
@@ -280,6 +279,11 @@ public class viewer extends JFrame {
             g2d.setColor(new Color(0, 0, 0, 180));
             g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
 
+            // White border around the box
+            g2d.setColor(Color.WHITE);
+            g2d.setStroke(new BasicStroke(2));
+            g2d.drawRoundRect(1, 1, getWidth() - 3, getHeight() - 3, 15, 15);
+
             g2d.setColor(Color.WHITE);
             int y = 15;
             g2d.drawString("JVM Uptime: " + uptime + " sec", 10, y); y += 15;
@@ -296,6 +300,7 @@ public class viewer extends JFrame {
             }
 
             g2d.drawString(String.format("FPS: %.1f", fps), 10, y);
+            g2d.drawString(String.format("Press Strg+D for Profiler!"),10,y += 20); //adj
         }
 
         @Override
