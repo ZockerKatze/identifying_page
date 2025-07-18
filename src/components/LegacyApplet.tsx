@@ -1,67 +1,55 @@
-'use client'
+'use client';
 import React, { useState } from "react";
-import type {} from 'react/jsx-runtime';
 import Image from 'next/image';
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export const APPLETS = [
   {
     label: "3D Cube",
-    jar: "src/jars/MyApplet.jar", // relative to legacy-applet/
+    jar: "MyApplet.jar",
     code: "MyApplet",
-    source: "src/classes/MyApplet.java", // relative to legacy-applet/
     width: 640,
     height: 480,
   },
   {
     label: "Tetris Java Applet",
-    jar: "src/jars/TetrisApplet.jar",
+    jar: "TetrisApplet.jar",
     code: "TetrisApplet",
-    source: "src/classes/TetrisApplet.java",
     width: 640,
     height: 480,
   },
   {
     label: "SineWave",
-    jar: "src/jars/sinewave.jar",
+    jar: "sinewave.jar",
     code: "sinewave",
-    source: "src/classes/sinewave.java",
     width: 640,
     height: 480,
   },
   {
     label: "Snake",
-    jar: "src/jars/SnakeApplet.jar",
+    jar: "SnakeApplet.jar",
     code: "SnakeApplet",
-    source: "src/classes/SnakeApplet.java",
     width: 640,
     height: 480,
   }
-  /* For Future we add more applets here. doing these is a pain tho.
-     If you want to do one then look at the JavaDocs. They help a lot
-     Compiling these is done with max Java 8. JDK9 disabled the applets.
-  */
 ];
-
-// const EXTENSION_URL = "https://chrome.google.com/webstore/detail/cheerpj-applet-runner/bbmolahhldcbngedljfadjlognfaaein";
 
 export default function LegacyApplet() {
   const [selected, setSelected] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+
   const applet = APPLETS[selected];
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  // Build the JAR and source URLs relative to public/legacy-applet/
-  const jarUrl = `${basePath}/legacy-applet/${applet.jar}`;
-  const sourceUrl = `${basePath}/legacy-applet/${applet.source}`;
+  const jarUrl = `${basePath}/legacy-applet/src/jars/${applet.jar}`;
   const src = `${basePath}/legacy-applet/index.html?jar=${encodeURIComponent(jarUrl)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
 
-  // Demo images for the carousel
   const demoImages = [
     { src: `${basePath}/demoimages/cube.png`, alt: '3D Cube' },
     { src: `${basePath}/demoimages/tetris.png`, alt: 'Tetris' },
     { src: `${basePath}/demoimages/snake.png`, alt: 'Snake' },
     { src: `${basePath}/demoimages/waves.png`, alt: 'Waves' },
-    { src: `${basePath}/demoimages/profiler.png`, alt:'JProfiler'}
+    { src: `${basePath}/demoimages/profiler.png`, alt: 'JProfiler' }
   ];
 
   const handlePrev = () => setCarouselIndex((prev) => (prev - 1 + demoImages.length) % demoImages.length);
@@ -86,6 +74,7 @@ export default function LegacyApplet() {
           title="Legacy Java Applet"
         />
       </div>
+
       <div style={{
         margin: '0 auto 10px auto',
         maxWidth: 600,
@@ -139,6 +128,7 @@ export default function LegacyApplet() {
           Give these applets a try! The controls are simple, and I hope you have fun playing Tetris. It&apos;s basic, but still a lot of fun!
         </p>
       </div>
+
       <div style={{
         marginBottom: 32,
         maxWidth: 600,
@@ -158,7 +148,7 @@ export default function LegacyApplet() {
           <li style={{ marginBottom: 12 }}><strong>Tetris</strong> – Why? I got this idea from a friend while talking about <i>some redacted topic</i>.</li>
           <li style={{ marginBottom: 12 }}><strong>Sine Wave Simulator</strong> – I did this to prove my Mathematics Teacher wrong. <i>I hate him</i>.</li>
           <li style={{ marginBottom: 12 }}><strong>Snake</strong> – Why? I already wrote a Java Snake and I just had to rewrite it to some extent to make it work with Java applets.</li>
-          <li><strong>Java Applet Profiler</strong> - If you are looking to develop Java Applets yourself then you might want to checkout the Profiler I wrote. I uses a drag and drop system for .jar or .class Files that come from compiled Java. You can Profile the Runtime of your Java Applets there!</li>
+          <li><strong>Java Applet Profiler</strong> - If you are looking to develop Java Applets yourself then you might want to checkout the Profiler I wrote. It uses a drag and drop system for .jar or .class Files that come from compiled Java. You can Profile the Runtime of your Java Applets there!</li>
         </ul>
         <hr style={{ opacity: 0.5, margin: '28px 0 18px 0' }} />
         <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
@@ -180,7 +170,7 @@ export default function LegacyApplet() {
           </div>
         </div>
       </div>
-      {/* Zoom Modal */}
+
       {zoomed && (
         <div
           onClick={handleCloseZoom}
@@ -232,4 +222,4 @@ export default function LegacyApplet() {
       )}
     </div>
   );
-} 
+}
