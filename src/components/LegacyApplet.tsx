@@ -6,9 +6,9 @@ import Image from 'next/image';
 export const APPLETS = [
   {
     label: "3D Cube",
-    jar: "src/jars/MyApplet.jar",
+    jar: "src/jars/MyApplet.jar", // relative to legacy-applet/
     code: "MyApplet",
-    source: "src/classes/MyApplet.java",
+    source: "src/classes/MyApplet.java", // relative to legacy-applet/
     width: 640,
     height: 480,
   },
@@ -50,8 +50,9 @@ export default function LegacyApplet() {
   const [zoomed, setZoomed] = useState(false);
   const applet = APPLETS[selected];
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  // Always build the full JAR URL with basePath for both local and prod
+  // Build the JAR and source URLs relative to public/legacy-applet/
   const jarUrl = `${basePath}/legacy-applet/${applet.jar}`;
+  const sourceUrl = `${basePath}/legacy-applet/${applet.source}`;
   const src = `${basePath}/legacy-applet/index.html?jar=${encodeURIComponent(jarUrl)}&code=${encodeURIComponent(applet.code)}&width=${applet.width}&height=${applet.height}`;
 
   // Demo images for the carousel
