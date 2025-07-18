@@ -1,3 +1,4 @@
+package src.classes;
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
@@ -60,6 +61,11 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
     Thread animationThread;
     Image staticLayer;
 
+    // Double buffering
+    private Image offscreenImage;
+    private Graphics2D offscreenGraphics;
+    private int offscreenW = -1, offscreenH = -1;
+
     // --- In-applet input form state ---
     boolean showWaveInputDialog = false;
     String inputAmp = "1.0";
@@ -72,6 +78,10 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
     boolean[] fieldEdited = new boolean[] {false, false, false, false};
 
     boolean showAnalysisView = false;
+
+    // For decoupled animation timing
+    private long lastAnimTime = 0;
+    private static final int ANIM_INTERVAL_MS = 64;
 
     public void init() {
         setBackground(Color.BLACK);
@@ -88,33 +98,44 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
     }
 
     public void paint(Graphics g) {
+        int w = getWidth();
+        int h = getHeight();
+        // Double buffering setup
+        if (offscreenImage == null || w != offscreenW || h != offscreenH) {
+            offscreenImage = createImage(w, h);
+            offscreenGraphics = (Graphics2D) offscreenImage.getGraphics();
+            offscreenW = w;
+            offscreenH = h;
+        }
+        Graphics2D g2 = offscreenGraphics;
+        // Clear
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, w, h);
+        // Existing drawing logic
         if (showAnalysisView) {
-            drawAnalysisView((Graphics2D) g, getWidth(), getHeight());
-            return;
-        }
-        if (staticLayer == null || staticLayer.getWidth(null) != getWidth() || staticLayer.getHeight(null) != getHeight()) {
-            staticLayer = createImage(getWidth(), getHeight());
-            drawStaticLayer(staticLayer.getGraphics());
-        }
-        g.drawImage(staticLayer, 0, 0, null);
-        Graphics2D g2 = (Graphics2D) g;
-        if (animateMode) {
-            drawAnimatedWave(g2, getWidth(), getHeight());
+            drawAnalysisView(g2, w, h);
         } else {
-            drawSine(g2, getWidth(), getHeight());
+            if (staticLayer == null || staticLayer.getWidth(null) != w || staticLayer.getHeight(null) != h) {
+                staticLayer = createImage(w, h);
+                drawStaticLayer(staticLayer.getGraphics());
+            }
+            g2.drawImage(staticLayer, 0, 0, null);
+            if (animateMode) {
+                drawAnimatedWave(g2, w, h);
+            } else {
+                drawSine(g2, w, h);
+            }
+            g2.setColor(Color.GRAY);
+            g2.drawString("H - Help", w - 70, h - 10);
+            if (showWaveInputDialog) {
+                drawWaveInputDialog(g2, w, h);
+            }
+            if (showHelp) {
+                drawHelp(g2, w, h);
+            }
         }
-        g2.setColor(Color.GRAY);
-        g2.drawString("H - Help", getWidth() - 70, getHeight() - 10);
-
-        // Draw in-applet input dialog if needed
-        if (showWaveInputDialog) {
-            drawWaveInputDialog(g2, getWidth(), getHeight());
-        }
-
-        // Draw help box LAST so it is always on top
-        if (showHelp) {
-            drawHelp(g2, getWidth(), getHeight());
-        }
+        // Blit
+        g.drawImage(offscreenImage, 0, 0, this);
     }
 
     void drawStaticLayer(Graphics g) {
@@ -430,6 +451,11 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
 
     // Replace createWaveDialog with AWT-only dialog
     // Remove createWaveDialog (no longer needed)
+
+    @Override
+    public void update(Graphics g) {
+        paint(g);
+    }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
@@ -770,14 +796,25 @@ public class sinewave extends Applet implements MouseWheelListener, MouseMotionL
 
     @Override
     public void run() {
+        final int targetFPS = 60;
+        final long targetFrameTime = 1000 / targetFPS;
         while (true) {
-            if (animateMode) {
+            long startTime = System.currentTimeMillis();
+            long now = System.currentTimeMillis();
+            if (animateMode && now - lastAnimTime >= ANIM_INTERVAL_MS) {
                 animationTime += animationSpeed;
-                repaint();
+                lastAnimTime = now;
             }
-            try {
-                Thread.sleep(64);
-            } catch (InterruptedException ignored) {}
+            repaint();
+            long elapsed = System.currentTimeMillis() - startTime;
+            long sleepTime = targetFrameTime - elapsed;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException ignored) {}
+            } else {
+                Thread.yield();
+            }
         }
     }
 }

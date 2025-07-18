@@ -1,3 +1,4 @@
+package src.classes;
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
@@ -56,6 +57,11 @@ public class SnakeApplet extends Applet implements Runnable, KeyListener {
         {0, 1, 1, 1, 0}
     };
 
+    // Double buffering
+    private Image offscreenImage;
+    private Graphics2D offscreenGraphics;
+    private int offscreenW = -1, offscreenH = -1;
+
     public void init() {
         setSize(WIDTH, HEIGHT);
         setBackground(BACKGROUND_COLOR);
@@ -77,44 +83,74 @@ public class SnakeApplet extends Applet implements Runnable, KeyListener {
     }
 
     public void run() {
+        final int targetFPS = 60;
+        final long targetFrameTime = 1000 / targetFPS;
         while (true) {
+            long startTime = System.currentTimeMillis();
             updateGame();
             repaint();
-            try {
-                Thread.sleep(16); // ~60 FPS
-            } catch (InterruptedException e) {}
+            long elapsed = System.currentTimeMillis() - startTime;
+            long sleepTime = targetFrameTime - elapsed;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {}
+            } else {
+                Thread.yield();
+            }
         }
     }
 
+    @Override
+    public void update(Graphics g) {
+        paint(g);
+    }
+
     public void paint(Graphics g) {
+        int w = getWidth();
+        int h = getHeight();
+        // Double buffering setup
+        if (offscreenImage == null || w != offscreenW || h != offscreenH) {
+            offscreenImage = createImage(w, h);
+            offscreenGraphics = (Graphics2D) offscreenImage.getGraphics();
+            offscreenW = w;
+            offscreenH = h;
+        }
+        Graphics2D g2 = offscreenGraphics;
+        // Clear
+        g2.setColor(BACKGROUND_COLOR);
+        g2.fillRect(0, 0, w, h);
         // Draw grid
-        g.setColor(GRID_COLOR);
-        for (int x = 0; x <= WIDTH; x += GRID_SIZE)
-            g.drawLine(x, 0, x, HEIGHT);
-        for (int y = 0; y <= HEIGHT; y += GRID_SIZE)
-            g.drawLine(0, y, WIDTH, y);
-
-        // Draw snake
-        for (int i = 0; i < snake.size(); i++) {
-            Point p = snake.get(i);
-            if (i == 0)
-                drawPattern(g, p.x * GRID_SIZE, p.y * GRID_SIZE, HEAD_PATTERN, SNAKE_HEAD_COLOR);
-            else
-                drawPattern(g, p.x * GRID_SIZE, p.y * GRID_SIZE, BODY_PATTERN, SNAKE_BODY_COLOR);
+        g2.setColor(GRID_COLOR);
+        for (int x = 0; x <= w; x += GRID_SIZE)
+            g2.drawLine(x, 0, x, h);
+        for (int y = 0; y <= h; y += GRID_SIZE)
+            g2.drawLine(0, y, w, y);
+        // Draw snake only if length > 0
+        if (snake.size() > 0) {
+            // Draw head
+            Point head = snake.get(0);
+            drawPattern(g2, head.x * GRID_SIZE, head.y * GRID_SIZE, HEAD_PATTERN, SNAKE_HEAD_COLOR);
+            // Draw body if length > 1
+            for (int i = 1; i < snake.size(); i++) {
+                Point p = snake.get(i);
+                drawPattern(g2, p.x * GRID_SIZE, p.y * GRID_SIZE, BODY_PATTERN, SNAKE_BODY_COLOR);
+            }
         }
-
         // Draw fruit
-        drawPattern(g, fruit.x * GRID_SIZE, fruit.y * GRID_SIZE, FRUIT_PATTERN, FRUIT_COLOR);
-
-        // Score
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 16));
-        g.drawString("Score: " + score, 10, 20);
-
-        if (showMessage && System.currentTimeMillis() - messageShowTime < 2000) {
-            g.setColor(MESSAGE_COLOR);
-            g.drawString("MILESTONE: " + score + " POINTS!", WIDTH / 2 - 80, 40);
+        if (fruit != null) {
+            drawPattern(g2, fruit.x * GRID_SIZE, fruit.y * GRID_SIZE, FRUIT_PATTERN, FRUIT_COLOR);
         }
+        // Score
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.BOLD, 16));
+        g2.drawString("Score: " + score, 10, 20);
+        if (showMessage && System.currentTimeMillis() - messageShowTime < 2000) {
+            g2.setColor(MESSAGE_COLOR);
+            g2.drawString("MILESTONE: " + score + " POINTS!", w / 2 - 80, 40);
+        }
+        // Blit
+        g.drawImage(offscreenImage, 0, 0, this);
     }
 
     private void updateGame() {

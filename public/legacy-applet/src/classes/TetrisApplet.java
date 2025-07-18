@@ -1,3 +1,4 @@
+package src.classes;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
@@ -48,6 +49,15 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
         {{{0,0},{1,0},{1,1},{2,1}},{{2,0},{1,1},{2,1},{1,2}},{{0,1},{1,1},{1,2},{2,2}},{{1,0},{0,1},{1,1},{0,2}}}
     };
 
+    // Double buffering
+    private Image offscreenImage;
+    private Graphics2D offscreenGraphics;
+    private int offscreenW = -1, offscreenH = -1;
+
+    // For decoupled game logic timing
+    private long lastDropTime = 0;
+    private static final int DROP_INTERVAL_MS = 400;
+
     public void init() {
         setSize(APPLET_WIDTH, APPLET_HEIGHT);
         setBackground(Color.BLACK);
@@ -76,82 +86,111 @@ public class TetrisApplet extends Applet implements Runnable, KeyListener {
         */
 
     public void run() {
+        final int targetFPS = 60;
+        final long targetFrameTime = 1000 / targetFPS;
         while (running) {
-            try { Thread.sleep(400); } catch (InterruptedException e) {}
+            long startTime = System.currentTimeMillis();
+            long now = System.currentTimeMillis();
             if (!gameOver && !paused) {
-                if (!move(0, 1, curRot)) {
-                    placePiece();
-                    clearLines();
-                    spawnPiece();
+                if (now - lastDropTime >= DROP_INTERVAL_MS) {
+                    if (!move(0, 1, curRot)) {
+                        placePiece();
+                        clearLines();
+                        spawnPiece();
+                    }
+                    lastDropTime = now;
                 }
-                repaint();
+            }
+            repaint();
+            long elapsed = System.currentTimeMillis() - startTime;
+            long sleepTime = targetFrameTime - elapsed;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {}
+            } else {
+                Thread.yield();
             }
         }
     }
 
+    @Override
     public void paint(Graphics g) {
+        int w = getWidth();
+        int h = getHeight();
+        // Double buffering setup
+        if (offscreenImage == null || w != offscreenW || h != offscreenH) {
+            offscreenImage = createImage(w, h);
+            offscreenGraphics = (Graphics2D) offscreenImage.getGraphics();
+            offscreenW = w;
+            offscreenH = h;
+        }
+        Graphics2D g2 = offscreenGraphics;
+        // Clear
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, w, h);
+        // Existing drawing logic
         // Playfield background
-        g.setColor(Color.DARK_GRAY);
-        g.fillRect(ORIGIN_X, ORIGIN_Y, PLAYFIELD_WIDTH, ROWS * BLOCK);
-
+        g2.setColor(Color.DARK_GRAY);
+        g2.fillRect(ORIGIN_X, ORIGIN_Y, PLAYFIELD_WIDTH, ROWS * BLOCK);
         // Grid
-        g.setColor(new Color(80, 80, 80));
+        g2.setColor(new Color(80, 80, 80));
         for (int r = 0; r <= ROWS; r++)
-            g.drawLine(ORIGIN_X, ORIGIN_Y + r * BLOCK, ORIGIN_X + PLAYFIELD_WIDTH, ORIGIN_Y + r * BLOCK);
+            g2.drawLine(ORIGIN_X, ORIGIN_Y + r * BLOCK, ORIGIN_X + PLAYFIELD_WIDTH, ORIGIN_Y + r * BLOCK);
         for (int c = 0; c <= COLS; c++)
-            g.drawLine(ORIGIN_X + c * BLOCK, ORIGIN_Y, ORIGIN_X + c * BLOCK, ORIGIN_Y + ROWS * BLOCK);
-
+            g2.drawLine(ORIGIN_X + c * BLOCK, ORIGIN_Y, ORIGIN_X + c * BLOCK, ORIGIN_Y + ROWS * BLOCK);
         // Draw blocks
         for (int r = 0; r < ROWS; r++)
             for (int c = 0; c < COLS; c++)
                 if (board[r][c] != 0) {
-                    g.setColor(colors[board[r][c]]);
-                    g.fillRect(ORIGIN_X + c * BLOCK + 1, ORIGIN_Y + r * BLOCK + 1, BLOCK - 2, BLOCK - 2);
+                    g2.setColor(colors[board[r][c]]);
+                    g2.fillRect(ORIGIN_X + c * BLOCK + 1, ORIGIN_Y + r * BLOCK + 1, BLOCK - 2, BLOCK - 2);
                 }
-
         // Draw current piece
-        g.setColor(colors[curType + 1]);
+        g2.setColor(colors[curType + 1]);
         for (int[] b : SHAPES[curType][curRot])
-            g.fillRect(ORIGIN_X + (curX + b[0]) * BLOCK + 1, ORIGIN_Y + (curY + b[1]) * BLOCK + 1, BLOCK - 2, BLOCK - 2);
-
+            g2.fillRect(ORIGIN_X + (curX + b[0]) * BLOCK + 1, ORIGIN_Y + (curY + b[1]) * BLOCK + 1, BLOCK - 2, BLOCK - 2);
         // Sidebar background
-        g.setColor(new Color(30,30,30));
-        g.fillRect(ORIGIN_X + PLAYFIELD_WIDTH, ORIGIN_Y, SIDBAR, ROWS * BLOCK);
-
+        g2.setColor(new Color(30,30,30));
+        g2.fillRect(ORIGIN_X + PLAYFIELD_WIDTH, ORIGIN_Y, SIDBAR, ROWS * BLOCK);
         // Score
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 18));
-        g.drawString("Score", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 40);
-        g.setFont(new Font("Arial", Font.BOLD, 22));
-        g.drawString("" + score, ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 70);
-
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.BOLD, 18));
+        g2.drawString("Score", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 40);
+        g2.setFont(new Font("Arial", Font.BOLD, 22));
+        g2.drawString("" + score, ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 70);
         // Next piece
-        g.setFont(new Font("Arial", Font.BOLD, 16));
-        g.drawString("Next", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 120);
+        g2.setFont(new Font("Arial", Font.BOLD, 16));
+        g2.drawString("Next", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 120);
         int next = nextPieces.peek() != null ? nextPieces.peek() : 0;
-        g.setColor(colors[next + 1]);
+        g2.setColor(colors[next + 1]);
         for (int[] b : SHAPES[next][0])
-            g.fillRect(ORIGIN_X + PLAYFIELD_WIDTH + 30 + b[0]*BLOCK/2, ORIGIN_Y + 140 + b[1]*BLOCK/2, BLOCK/2, BLOCK/2);
-
+            g2.fillRect(ORIGIN_X + PLAYFIELD_WIDTH + 30 + b[0]*BLOCK/2, ORIGIN_Y + 140 + b[1]*BLOCK/2, BLOCK/2, BLOCK/2);
         // Controls
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.PLAIN, 12));
-        g.drawString("←/→ or A/D: Move", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 200);
-        g.drawString("↑ or W or R: Rotate", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 215);
-        g.drawString("↓ or S: Soft drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 230);
-        g.drawString("Space: Hard drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 245);
-        g.drawString("ESC: Pause", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 260);
-
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.PLAIN, 12));
+        g2.drawString("\u2190/\u2192 or A/D: Move", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 200);
+        g2.drawString("\u2191 or W or R: Rotate", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 215);
+        g2.drawString("\u2193 or S: Soft drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 230);
+        g2.drawString("Space: Hard drop", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 245);
+        g2.drawString("ESC: Pause", ORIGIN_X + PLAYFIELD_WIDTH + 10, ORIGIN_Y + 260);
         // Game over
         if (gameOver) {
-            g.setColor(Color.RED);
-            g.setFont(new Font("Arial", Font.BOLD, 32));
-            g.drawString("GAME OVER", ORIGIN_X + 30, ORIGIN_Y + 240);
+            g2.setColor(Color.RED);
+            g2.setFont(new Font("Arial", Font.BOLD, 32));
+            g2.drawString("GAME OVER", ORIGIN_X + 30, ORIGIN_Y + 240);
         } else if (paused) {
-            g.setColor(Color.YELLOW);
-            g.setFont(new Font("Arial", Font.BOLD, 32));
-            g.drawString("PAUSED", ORIGIN_X + 60, ORIGIN_Y + 240);
+            g2.setColor(Color.YELLOW);
+            g2.setFont(new Font("Arial", Font.BOLD, 32));
+            g2.drawString("PAUSED", ORIGIN_X + 60, ORIGIN_Y + 240);
         }
+        // Blit
+        g.drawImage(offscreenImage, 0, 0, this);
+    }
+
+    @Override
+    public void update(Graphics g) {
+        paint(g);
     }
 
     private void spawnPiece() {

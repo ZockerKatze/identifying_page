@@ -1,3 +1,4 @@
+package src.classes;
 import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,13 +14,18 @@ import java.awt.geom.*;
 */
 
 public class MyApplet extends Applet implements Runnable, MouseListener, MouseMotionListener, MouseWheelListener{
-    private Thread animator;
+    private volatile Thread animator;
     private double angleX = 0, angleY = 0;
     private double dragAngleX = 0, dragAngleY = 0;
     private double zoom = 1.0;
     private int lastX, lastY;
     private boolean dragging = false;
     private float hue = 0f; // Rainbow hue value
+
+    // Double buffering
+    private Image offscreenImage;
+    private Graphics2D offscreenGraphics;
+    private int offscreenW = -1, offscreenH = -1;
 
     private final double[][] cubeVertices = {
         {-1, -1, -1}, {1, -1, -1},
@@ -34,6 +40,13 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
         {0,4}, {1,5}, {2,6}, {3,7}
     };
 
+    // Reusable arrays for projection
+    private final int[] projX = new int[8];
+    private final int[] projY = new int[8];
+
+    // Reuse Color and Stroke
+    private final BasicStroke stroke = new BasicStroke(2);
+
     @Override
     public void init() {
         setBackground(Color.black);
@@ -44,8 +57,10 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
 
     @Override
     public void start() {
-        animator = new Thread(this);
-        animator.start();
+        if (animator == null) {
+            animator = new Thread(this);
+            animator.start();
+        }
     }
 
     @Override
@@ -55,7 +70,10 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
 
     @Override
     public void run() {
+        final int targetFPS = 60;
+        final long targetFrameTime = 1000 / targetFPS;
         while (Thread.currentThread() == animator) {
+            long startTime = System.currentTimeMillis();
             if (!dragging) {
                 angleY += 0.01; // idle spin
                 angleX += 0.01;
@@ -65,19 +83,33 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
             if (hue > 1f) hue -= 1f;
 
             repaint();
-            try {
-                Thread.sleep(16);
-            } catch (InterruptedException ignored) {}
+            long elapsed = System.currentTimeMillis() - startTime;
+            long sleepTime = targetFrameTime - elapsed;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException ignored) {}
+            } else {
+                Thread.yield();
+            }
         }
     }
 
-    private Point project(double x, double y, double z, int w, int h) {
+    private void ensureOffscreen(int w, int h) {
+        if (offscreenImage == null || w != offscreenW || h != offscreenH) {
+            offscreenImage = createImage(w, h);
+            offscreenGraphics = (Graphics2D) offscreenImage.getGraphics();
+            offscreenW = w;
+            offscreenH = h;
+        }
+    }
+
+    private void project(double x, double y, double z, int w, int h, int idx) {
         double scale = 100 * zoom;
         double distance = 3;
         double factor = scale / (z + distance);
-        int x2d = (int)(x * factor + w / 2);
-        int y2d = (int)(y * factor + h / 2);
-        return new Point(x2d, y2d);
+        projX[idx] = (int)(x * factor + w / 2);
+        projY[idx] = (int)(y * factor + h / 2);
     }
 
     private double[] rotate(double[] p, double ax, double ay) {
@@ -97,10 +129,17 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
     }
 
     @Override
+    public void update(Graphics g) {
+        // Override update to prevent flicker
+        paint(g);
+    }
+
+    @Override
     public void paint(Graphics g) {
         int w = getWidth();
         int h = getHeight();
-        Graphics2D g2 = (Graphics2D) g;
+        ensureOffscreen(w, h);
+        Graphics2D g2 = offscreenGraphics;
 
         // Clear screen
         g2.setColor(Color.black);
@@ -109,20 +148,24 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
         // Calculate current rainbow color
         Color rainbowColor = Color.getHSBColor(hue, 1.0f, 1.0f);
         g2.setColor(rainbowColor);
-        g2.setStroke(new BasicStroke(2));
+        g2.setStroke(stroke);
 
         // Project and draw cube
-        Point[] projected = new Point[8];
         for (int i = 0; i < cubeVertices.length; i++) {
             double[] rotated = rotate(cubeVertices[i], angleX, angleY);
-            projected[i] = project(rotated[0], rotated[1], rotated[2], w, h);
+            project(rotated[0], rotated[1], rotated[2], w, h, i);
         }
 
         for (int[] edge : edges) {
-            Point p1 = projected[edge[0]];
-            Point p2 = projected[edge[1]];
-            g2.drawLine(p1.x, p1.y, p2.x, p2.y);
+            int x1 = projX[edge[0]];
+            int y1 = projY[edge[0]];
+            int x2 = projX[edge[1]];
+            int y2 = projY[edge[1]];
+            g2.drawLine(x1, y1, x2, y2);
         }
+
+        // Blit offscreen image
+        g.drawImage(offscreenImage, 0, 0, this);
     }
 
     @Override
@@ -150,8 +193,7 @@ public class MyApplet extends Applet implements Runnable, MouseListener, MouseMo
         } else {
             zoom /= 1.1;
         }
-
-        // Clamp shit so we dont vanish away
+        // Clamp so we don't vanish away
         zoom = Math.max(1.0, Math.min(zoom,2.0));
     }
 

@@ -6,28 +6,28 @@ import Image from 'next/image';
 export const APPLETS = [
   {
     label: "3D Cube",
-    jar: "MyApplet.jar",
+    jar: "/legacy-applet/src/jars/MyApplet.jar",
     code: "MyApplet",
     width: 640,
     height: 480,
   },
   {
     label: "Tetris Java Applet",
-    jar: "TetrisApplet.jar",
+    jar: "/legacy-applet/src/jars/TetrisApplet.jar",
     code: "TetrisApplet",
     width: 640,
     height: 480,
   },
   {
     label: "SineWave",
-    jar: "sinewave.jar",
+    jar: "/legacy-applet/src/jars/sinewave.jar",
     code: "sinewave",
     width: 640,
     height: 480,
   },
   {
     label: "Snake",
-    jar: "SnakeApplet.jar",
+    jar: "/legacy-applet/src/jars/SnakeApplet.jar",
     code: "SnakeApplet",
     width: 640,
     height: 480,
