@@ -32,6 +32,13 @@ export const APPLETS = [
     code: "SnakeApplet",
     width: 640,
     height: 480,
+  },
+  {
+    label: "LCD Clock",
+    jar: "Clock.jar",
+    code: "Clock",
+    width: 640,
+    height: 480,
   }
 ];
 
