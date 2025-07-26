@@ -14,12 +14,15 @@ const Footer: React.FC = () => {
       <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" className='footer-badge' alt="TypeScript Badge" />
       <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" className='footer-badge' alt="React Badge" />
       <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" className='footer-badge' alt="Next.js Badge" />
-      <img src="https://img.shields.io/badge/gitea-609926?style=for-the-badge&logo=gitea&logoColor=white" className='footer-badge' alt="Gitea Badge" title='Not Here! :3 -->'/>
 
-      {/* @description  => This will open the GitHub Page for this WebSites Source Code
+      {/* @description  => This will open the GitHub Page for this WebSites Source Code ; And will open my Gitea Instance
           @if_error     => Check for any issues with the 'onClick' property ; or check if your styling is correct.
           @usage        => In the bottom of the Website , you can click on the GitHub Badge
       */}
+ 
+      <img src="https://img.shields.io/badge/gitea-609926?style=for-the-badge&logo=gitea&logoColor=white" className='footer-badge cursor-pointer' alt="Gitea Badge" title='Here!'
+      onClick={() => window.open('http://rattatwinko.servecounterstrike.com', '_blank')} />
+
       <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white" className='footer-badge cursor-pointer' alt="GitHub Source Code" title="or here"
         onClick={() => window.open('https://github.com/zockerkatze/identifying_page', '_blank')} />
     </footer>

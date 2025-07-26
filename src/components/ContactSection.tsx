@@ -87,7 +87,7 @@ const ContactSection: React.FC = () => (
               })}
               <p className="contact-note cursor-text">
                 Feel free to reach out! I&apos;m most active on Discord and Instagram.<br/>
-                <strong>Disclaimer:</strong> I do not develop on GitHub. I use Gitea for version control. That&apos;s why my GitHub is empty.
+                <strong>Disclaimer:</strong> I do not develop on GitHub. I use <a href='http://rattatwinko.servecounterstrike.com/'>Gitea</a> for version control. That&apos;s why my GitHub is empty.
               </p>
             </div>
           </div>
