@@ -32,7 +32,7 @@ const AboutSection: React.FC = () => (
         >
           Gitea
         </a>
-        , that's where I do Stuff.
+        , that&apos;s where I do Stuff.
       </p>
 
       <br style={{ opacity: 0.5, margin: "10, 0" }} />
