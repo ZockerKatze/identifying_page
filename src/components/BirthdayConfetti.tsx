@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useCallback, useState } from 'react';
 import confetti from 'canvas-confetti';
-import AgeCalculator from './AgeCalculator';
 
 /*
 * @description => BirthdayConfetti component that detects birthdays using Vienna timezone and triggers confetti animation.
