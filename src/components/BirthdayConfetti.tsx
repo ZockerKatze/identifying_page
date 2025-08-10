@@ -122,10 +122,11 @@ const BirthdayConfetti: React.FC<BirthdayConfettiProps> = ({ birthDate }) => {
 
   return (
     <>
-      {/* Display current age using the AgeCalculator component */}
-      <div className="fixed top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full font-bold text-sm z-10000">
+      {/* debug statement ; works ; removed */}
+      
+      {/*<div className="fixed top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full font-bold text-sm z-10000">
         Age: <AgeCalculator birthDate={birthDate} />
-      </div>
+      </div>*/}
       
       {/* Birthday message and confetti trigger */}
       {isBirthday && (
