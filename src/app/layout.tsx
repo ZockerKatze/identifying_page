@@ -3,7 +3,7 @@ import './globals.css'
 import BirthdayConfetti from '../components/BirthdayConfetti';
 
 export const metadata: Metadata = {
-  title: 'rattatwinko.sh',
+  title: 'devprofile.sh',
   description: 'Developer portfolio',
 }
 

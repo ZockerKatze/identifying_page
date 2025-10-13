@@ -4,8 +4,7 @@
     { "name": "Lua", "url": "https://www.lua.org" },
     { "name": "Rust", "url": "https://www.rust-lang.org" },
     { "name": "Java", "url": "https://zockerkatze.github.io/identifying_page/java", "icon": "openjdk" },
-    { "name": "Bash", "url": "https://www.gnu.org/software/bash/", "icon": "gnubash" },
-    { "name": "TypeScript", "url": "https://www.typescriptlang.org", "icon": "typescript" }
+    { "name": "Bash", "url": "https://www.gnu.org/software/bash/", "icon": "gnubash" }
   ],
   
   "Software": [
