@@ -72,7 +72,9 @@ const ContactSection: React.FC = () => (
                           sequence={[
                             ' // ',
                             2000,
-                            ' // Add Me :3',
+                            ' // Add Me ',
+                            1000,
+                            " // Actually please dont",
                             1000
                           ]}
                           wrapper="span"
@@ -87,7 +89,7 @@ const ContactSection: React.FC = () => (
               })}
               <p className="contact-note cursor-text">
                 Feel free to reach out! I&apos;m most active on Discord.<br/>
-                <strong>Disclaimer:</strong> I do not develop on GitHub. I use <a href='http://rattatwinko.servecounterstrike.com/'>Gitea</a> for version control. That&apos;s why my GitHub is empty.<br />
+                <strong>Disclaimer:</strong> I do not develop on GitHub. I use <a style={{ textDecoration:"none", color:"--text-primary" }} href='http://rattatwinko.servecounterstrike.com/'>Gitea</a> for version control. That&apos;s why my GitHub is empty.<br />
                 <strong>Second Disclaimer:</strong> <i>I used to have a Email / Insta on here.</i>
               </p>
             </div>

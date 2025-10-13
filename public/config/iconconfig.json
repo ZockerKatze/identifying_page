@@ -35,7 +35,7 @@
 
   "ContactIcons": [
     { "name": "Discord", "icon": "discord", "url": "", "display": "@rattatwingo" },
-    { "name": "TikTok", "icon": "tiktok", "url": "https://tiktok.com/@rattatwingo", "display": "@rattatwingo" },
+    { "name": "TikTok", "icon": "tiktok", "url": "http://127.0.0.1/", "display": "@rattatwinko" },
     { "name": "GitHub", "icon": "github", "url": "https://github.com/ZockerKatze", "display": "@rattatwinko" },
     {"name": "Gitea", "icon":"gitea","url":"http://rattatwinko.servecounterstrike.com/","display":"@rattatwinko"}
   ],
