@@ -19,13 +19,18 @@ const ProjectsSection: React.FC = () => {
   useEffect(() => {
     const fetchRss = async () => {
       try {
-        const proxyUrl = "https://api.allorigins.win/get?url=";
-        const feedUrl = "https://rattatwinko.servecounterstrike.com/gitea/rattatwinko.rss";
-        
-        const res = await fetch(proxyUrl + encodeURIComponent(feedUrl));
-        const data = await res.json();
-        const text = data.contents;
-
+          const proxyUrl = "https://cors.isomorphic-git.org/";
+          const feedUrl = "https://rattatwinko.servecounterstrike.com/gitea/rattatwinko.rss";
+          
+          const res = await fetch(proxyUrl + feedUrl, {
+            headers: {
+              "x-requested-with": "XMLHttpRequest"
+            }
+          });
+          
+          if (!res.ok) throw new Error("Failed to fetch via proxy");
+          
+          const text = await res.text();
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, 'application/xml');
