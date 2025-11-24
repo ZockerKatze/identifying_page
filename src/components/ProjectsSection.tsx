@@ -19,10 +19,13 @@ const ProjectsSection: React.FC = () => {
   useEffect(() => {
     const fetchRss = async () => {
       try {
-        const proxyUrl = 'https://api.allorigins.win/raw?url=';
-        const feedUrl = 'https://rattatwinko.servecounterstrike.com/gitea/rattatwinko.rss';
+        const proxyUrl = "https://api.allorigins.win/get?url=";
+        const feedUrl = "https://rattatwinko.servecounterstrike.com/gitea/rattatwinko.rss";
+        
         const res = await fetch(proxyUrl + encodeURIComponent(feedUrl));
-        const text = await res.text();
+        const data = await res.json();
+        const text = data.contents;
+
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(text, 'application/xml');
