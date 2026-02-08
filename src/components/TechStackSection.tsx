@@ -69,7 +69,7 @@ const TechStackSection: React.FC = () => (
                   </div>
                 </div>
               ))}
-            <p className="domain-note">Last Update - 2025@Q3</p>
+            <p className="domain-note">Last Update - 2026@Q1</p>
           </div>
         ) : (
           <div className="section-content">Loading...</div>

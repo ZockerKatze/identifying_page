@@ -12,17 +12,18 @@
     { "name": "Docker", "url": "https://www.docker.com" },
     { "name": "FFmpeg", "url": "https://ffmpeg.org" },
     { "name": "Visual Studio Code", "url": "https://code.visualstudio.com", "icon": "visualstudiocode" },
-    { "name": "NeoVim", "url": "https://neovim.io", "icon": "neovim" },
+    { "name": "NVim", "url": "https://neovim.io", "icon": "neovim" },
     { "name": "Portainer", "url": "https://www.portainer.io", "icon": "portainer" },
     { "name": "Maven/Gradle", "url": "https://maven.apache.org", "icon": "apachemaven" },
-    { "name": "CMake", "url": "https://cmake.org" }
+    { "name": "IntelliJ IDEA", "url": "https://www.jetbrains.com/de-de/idea/", "icon": "intellijidea" }
   ],
 
   "Operating Systems": [
     { "name": "Arch Linux", "url": "https://archlinux.org", "icon": "archlinux" },
     { "name": "Alpine Linux", "url": "https://alpinelinux.org", "icon": "alpinelinux" },
     { "name": "Debian", "url": "https://www.debian.org" },
-    { "name": "RHEL (Red-Hat)", "url": "https://www.redhat.com", "icon": "redhat" }
+    { "name": "RHEL (Red-Hat)", "url": "https://www.redhat.com", "icon": "redhat" },
+    { "name": "Windows", "url":"https://www.microsoft.com/de-de/windows", "icon":"windows" }
   ],
 
   "Enterprise Technology": [

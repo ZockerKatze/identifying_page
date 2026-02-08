@@ -15,7 +15,7 @@ export default function Home() {
       <ExperienceSection />
       <TechStackSection />
       <InfrastructureSection />
-      <ProjectsSection />
+      { /* <ProjectsSection />  ; dont work */ }
       <ContactSection />
       <Footer />
     </div>
