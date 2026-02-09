@@ -60,8 +60,8 @@
 :root {
   /* Default cursor for most elements */
   --cursor-default: url('../../public/cursors/cat/pointer.png'), auto;
-  --cursor-pointer: url('../../public/cursors/cat/cursor.png'), pointer; 
-  --cursor-pointer: url('/cursors/cat/cursor.png') 16 16, pointer; /*Idk whats happening here*/
+  --cursor-pointer: url('../../public/cursors/cat/cursor.png') 16 16, pointer;  /* so this was fucked up? idk what is wrong with it? i hope its fixed now */
+  /*--cursor-pointer: url('/cursors/cat/cursor.png') 16 16, pointer; /*Idk whats happening here*/
   --cursor-text: url('../../public/cursors/macOS/textcursor.svg'), text;
   --cursor-move: url('../../public/cursors/macOS/move.svg'), move;
   --cursor-not-allowed: url('../../public/cursors/macOS/notallowed.svg'), not-allowed;
