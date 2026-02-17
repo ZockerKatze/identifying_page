@@ -2,6 +2,9 @@
 import Link from 'next/link';
 import styles from './JavaApplet.module.css';
 
+// gh pages is annoying :C
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export default function JavaApplet() {
   return (
     <div className={styles.container}>
@@ -24,7 +27,7 @@ export default function JavaApplet() {
 
         {/* svg java logo */}
         <img
-          src="/demoimages/java.svg"
+          src={`${basePath}/demoimages/java.svg`}
           alt="Java Logo"
           className={styles.javaLogo}
         />
