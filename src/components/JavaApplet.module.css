@@ -1,0 +1,36 @@
+.container {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 9999;
+  transform: rotate(-5deg); 
+}
+
+.link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;   
+  align-items: center;
+  gap: 10px;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.arrowSvg {
+  transform: rotate(25deg);
+}
+
+.arrowPath {
+  stroke: #FAF9F6;
+}
+
+.javaLogo{
+  width: 60px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1300px) {
+  .container {
+    display: none;
+  }
+}
