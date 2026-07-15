@@ -1,9 +1,8 @@
 {
   "Languages": [
     { "name": "Python", "url": "https://www.python.org" },
-    { "name": "Lua", "url": "https://www.lua.org" },
-    { "name": "Rust", "url": "https://www.rust-lang.org" },
     { "name": "Java", "url": "https://zockerkatze.github.io/identifying_page/java", "icon": "openjdk" },
+    {"name":"C(++)", "url":"https://wikipedia.org/wiki/C++", "icon":"c"},
     { "name": "Bash", "url": "https://www.gnu.org/software/bash/", "icon": "gnubash" }
   ],
   
@@ -15,7 +14,8 @@
     { "name": "NVim", "url": "https://neovim.io", "icon": "neovim" },
     { "name": "Portainer", "url": "https://www.portainer.io", "icon": "portainer" },
     { "name": "Maven/Gradle", "url": "https://maven.apache.org", "icon": "apachemaven" },
-    { "name": "IntelliJ IDEA", "url": "https://www.jetbrains.com/de-de/idea/", "icon": "intellijidea" }
+    { "name": "IntelliJ IDEA", "url": "https://www.jetbrains.com/de-de/idea/", "icon": "intellijidea" },
+    { "name": "CMake", "url": "https://cmake.org/", "icon":"cmake"}
   ],
 
   "Operating Systems": [
@@ -27,7 +27,7 @@
   ],
 
   "Enterprise Technology": [
-    { "name": "Gradle", "url": "https://gradle.org" },
+    {"name":"Qt","url":"https://www.qt.io/","icon":"qt"},
     { "name": "Maven", "url": "https://maven.apache.org", "icon": "apachemaven" },
     { "name": "Java Swing", "url": "https://openjdk.org", "icon": "openjdk" },
     { "name": "Nginx", "url": "https://nginx.org" },
@@ -38,12 +38,10 @@
     { "name": "Discord", "icon": "discord", "url": "", "display": "@rattatwingo" },
     { "name": "TikTok", "icon": "tiktok", "url": "http://127.0.0.1/", "display": "@rattatwinko" },
     { "name": "GitHub", "icon": "github", "url": "https://github.com/ZockerKatze", "display": "@rattatwinko" },
-    {"name": "Gitea", "icon":"gitea","url":"http://rattatwinko.servecounterstrike.com/","display":"@rattatwinko"}
+    {"name": "Gitea", "icon":"gitea","url":"http://rattatwinko.servecounterstrike.com/gitea/rattatwinko","display":"@rattatwinko"}
   ],
 
   "InfrastructureServices": [
-    { "name": "REST API", "url": "https://fastapi.tiangolo.com/", "icon": "fastapi" },
-    { "name": "CasaOS", "url":"https://casaos.zimaspace.com/", "icon":"linux" },
     { "name": "Gitea", "icon":"gitea", "url":"http://rattatwinko.servecounterstrike.com/" },
     { "name": "Nginx", "url": "https://nginx.org", "icon":"nginx" }
   ],

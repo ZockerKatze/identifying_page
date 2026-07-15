@@ -23,8 +23,8 @@ const InfrastructureSection: React.FC = () => (
             <span className="spec-value">Intel Core i7-4770k</span>
           </div>
           <div className="spec-item">
-            <span className="spec-label">Storage:</span>
-            <span className="spec-value">9TB Total (7TB HDD + 2TB SSD)</span>
+            <span className="spec-label">RAM-Capacity:</span>
+            <span className="spec-value">32GB (DDR3)</span>
           </div>
         </div>
       </div>
